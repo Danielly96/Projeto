@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Software para fornecer informações sobre máquinas e equipamentos de uma mineradora</title>
+        <style type="text/css">  
+            body {background-color: #eeeeee; font-size: 12px}  
+        </style>  
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <table width="100%">
+                <tr>
+                    <td colspan="2" align="center">
+                        <ui:insert name="cabecalho">
+                            <font style="color: #228B22"> <h1>Software Para Fornecer 
+                                    Informações Sobre Máquinas E Equipamentos De Uma Mineradora</h1></font> 
+                        </ui:insert>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="200px" valign="top">
+                        <ui:insert name="menu">
+                            <h1>Menu</h1>
+                            <h:panelGrid columns="1">
+                                <h:commandLink value="Cadastro de Máquinas" action="Cadastrar.xhtml"/>
+                            </h:panelGrid>
+                        </ui:insert>
+                    </td>
+                    <td>
+                        <ui:insert name="conteudo" >
+                            <br>   O objetivo é utilizar as informações das máquinas e equipamentos,</br>
+                            <br>com o intuito de auxiliar na tomada de decisão da manutenção,</br>
+                            <br>a fim de intervir na situação de anormalidade em máquinas</br>
+                            <br>e equipamentos na Mineradora.</br>
+                        </ui:insert>
+                    </td>
+                    <td>
+                         <h:panelGrid id = "panel" columns = "2" border = "1"
+                                         cellpadding = "10" cellspacing = "1">
+
+                                <f:facet name = "header">
+                                    <h:outputText value = "Login"/>
+                                </f:facet>
+                                <h:outputLabel value = "Email" />
+                                <h:inputText  />
+                                <h:outputLabel value = "Senha" />
+                                <h:inputSecret />
+
+                                <f:facet name = "footer">
+                                    <h:panelGroup style = "display:block; text-align:center">
+                                        <h:commandButton id = "entrar" value = "Entrar" />
+                                    </h:panelGroup>
+                                </f:facet>
+                            </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
