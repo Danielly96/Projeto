@@ -8,11 +8,15 @@ package br.edu.ifms.mapeamento;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -39,6 +43,10 @@ public class ManutencaoMapeamento implements Serializable {
     private Date dataManutencaoMarcada;
     private Date dataManutencaoRealizada;
     private boolean emManutencao;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private ManutencaoMapeamento manutencao;
 
     public ManutencaoMapeamento(long id, MaquinaMapeamento maquinaId, PrioridadeMapeamento prioridadeId, FuncionarioMapeamento funcionarioQueIdentificouId, FuncionarioMapeamento funcionarioQueFezManutencaoId, String descricaoDoProblema, String descricaoDaSolucao, Date dataQueIdentificou, Date dataManutencaoMarcada, Date dataManutencaoRealizada, boolean emManutencao) {
         this.id = id;
@@ -145,4 +153,12 @@ public class ManutencaoMapeamento implements Serializable {
     public void setEmManutencao(boolean emManutencao) {
         this.emManutencao = emManutencao;
     }  
+    
+    public ManutencaoMapeamento getManutencao() {
+        return manutencao;
+    }
+
+    public void setManutencao(ManutencaoMapeamento manutencao) {
+        this.manutencao = manutencao;
+    }
 }

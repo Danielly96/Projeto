@@ -6,10 +6,15 @@
 package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -22,6 +27,17 @@ public class FuncaoMapeamento implements Serializable{
     @GeneratedValue
     private long id; 
     private String descricao;
+    @OneToMany(mappedBy="funcao", fetch = FetchType.LAZY)
+    @Cascade(CascadeType.ALL)
+    private Collection funcionarios;
+
+    public Collection getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(Collection funcionarios) {
+        this.funcionarios = funcionarios;
+    }
 
     public FuncaoMapeamento(long id, String descricao) {
         this.id = id;

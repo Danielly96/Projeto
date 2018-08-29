@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package br.edu.ifms.mapeamento;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -24,6 +29,9 @@ public class FabricanteMapeamento extends MaquinaMapeamento{
     private String nome;
     private String telefone;
     private String email;
+    @OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
+    @Cascade(CascadeType.ALL)
+    private Collection maquinas;
 
     public FabricanteMapeamento(long id, String nome, String telefone, String email) {
         this.id = id;

@@ -7,11 +7,16 @@ package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
 
 /**
  *
@@ -25,9 +30,12 @@ public class PecaMapeamento implements Serializable {
     @GeneratedValue
     private long id;
     private String descricao;
-    @ManyToOne
-    private SubconjuntoMapeamento subconjunto;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private PecaMapeamento peca;
 
+  
     public PecaMapeamento(long id, String descricao, SubconjuntoMapeamento subconjunto) {
         this.id = id;
         this.descricao = descricao;
@@ -52,13 +60,12 @@ public class PecaMapeamento implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    public SubconjuntoMapeamento getSubconjunto() {
-        return subconjunto;
+    public PecaMapeamento getPeca() {
+        return peca;
     }
 
-    public void setSubconjunto(SubconjuntoMapeamento subconjunto) {
-        this.subconjunto = subconjunto;
+    public void setPeca(PecaMapeamento peca) {
+        this.peca = peca;
     }
 
 }
