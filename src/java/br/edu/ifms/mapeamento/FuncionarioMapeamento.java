@@ -6,11 +6,13 @@
 package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -31,14 +33,24 @@ public class FuncionarioMapeamento implements Serializable {
     @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
     private FuncaoMapeamento funcao;
-
-    public FuncionarioMapeamento(long matricula, String nome, FuncaoMapeamento funcao) {
+    
+    @OneToMany(mappedBy="funcionario", fetch = FetchType.LAZY)
+    @Cascade(CascadeType.ALL)
+    private Collection manutencao;
+    
+     public FuncionarioMapeamento(long matricula, String nome, FuncaoMapeamento funcao) {
         this.matricula = matricula;
         this.nome = nome;
         this.funcao = funcao;
     }
     
-    
+    public Collection getManutencao() {
+        return manutencao;
+    }
+
+    public void setManutencao(Collection manutencao) {
+        this.manutencao = manutencao;
+    } 
     public FuncionarioMapeamento() {
     }
 

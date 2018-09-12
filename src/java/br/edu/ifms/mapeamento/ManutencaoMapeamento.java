@@ -36,6 +36,7 @@ public class ManutencaoMapeamento implements Serializable {
     @ManyToOne
     private FuncionarioMapeamento funcionarioQueIdentificouId;
     @ManyToOne
+    private FuncionarioMapeamento funcionario;
     private FuncionarioMapeamento funcionarioQueFezManutencaoId;
     private String descricaoDoProblema;
     private String descricaoDaSolucao;
@@ -46,8 +47,12 @@ public class ManutencaoMapeamento implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
-    private ManutencaoMapeamento manutencao;
-
+    private MaquinaMapeamento maquina;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private PrioridadeMapeamento prioridade;
+    
     public ManutencaoMapeamento(long id, MaquinaMapeamento maquinaId, PrioridadeMapeamento prioridadeId, FuncionarioMapeamento funcionarioQueIdentificouId, FuncionarioMapeamento funcionarioQueFezManutencaoId, String descricaoDoProblema, String descricaoDaSolucao, Date dataQueIdentificou, Date dataManutencaoMarcada, Date dataManutencaoRealizada, boolean emManutencao) {
         this.id = id;
         this.maquinaId = maquinaId;
@@ -61,7 +66,31 @@ public class ManutencaoMapeamento implements Serializable {
         this.dataManutencaoRealizada = dataManutencaoRealizada;
         this.emManutencao = emManutencao;
     }
-    
+
+    public FuncionarioMapeamento getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(FuncionarioMapeamento funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public MaquinaMapeamento getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(MaquinaMapeamento maquina) {
+        this.maquina = maquina;
+    }
+
+    public PrioridadeMapeamento getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(PrioridadeMapeamento prioridade) {
+        this.prioridade = prioridade;
+    }
+
     
     public ManutencaoMapeamento() {
     }
@@ -153,12 +182,4 @@ public class ManutencaoMapeamento implements Serializable {
     public void setEmManutencao(boolean emManutencao) {
         this.emManutencao = emManutencao;
     }  
-    
-    public ManutencaoMapeamento getManutencao() {
-        return manutencao;
-    }
-
-    public void setManutencao(ManutencaoMapeamento manutencao) {
-        this.manutencao = manutencao;
-    }
 }

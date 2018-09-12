@@ -7,15 +7,15 @@ package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.FetchMode;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
+import javax.persistence.FetchType;
+
 
 /**
  *
@@ -30,19 +30,26 @@ public class SubconjuntoMapeamento implements Serializable {
     private long id;
     private String descricao;
     @ManyToOne(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
+    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
-     private SubconjuntoMapeamento subconjunto;
+     private MaquinaMapeamento maquina;
 
-   
     public SubconjuntoMapeamento(long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
   
     }
+
     public SubconjuntoMapeamento() {
     }
+   
+    public MaquinaMapeamento getMaquina() {
+        return maquina;
+    }
 
+    public void setMaquina(MaquinaMapeamento maquina) {
+        this.maquina = maquina;
+    }
     public long getId() {
         return id;
     }
@@ -57,13 +64,5 @@ public class SubconjuntoMapeamento implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public SubconjuntoMapeamento getSubconjunto() {
-        return subconjunto;
-    }
-
-    public void setSubconjunto(SubconjuntoMapeamento subconjunto) {
-        this.subconjunto = subconjunto;
     }
 }
