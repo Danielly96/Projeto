@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml">
+
+    <ui:define name="corpo">
+        <h2> Cadastro Tipo de Máquinas</h2>
+        <h:form>
+            <div class="form-group">
+                <label for="lblDescricao">Descrição</label>                
+                <h:inputText class="form-control" id="lblDescricao" value="#{tipoBean.tmap.descricao}"/>
+            </div>
+
+            <h:commandButton class="btn btn-success" value="salvar" action= "#{tipoBean.salvar()}"/>
+            #{maquinaBean.msg}
+        </h:form>
+        <br/><br/><br/>
+        <h4>Tipos já cadastrados</h4>
+        <table class="table table-striped" onload="#{tipoBean.buscarTodos()}">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ui:repeat value="#{tipoBean.listaDeTipos}" var="tipos">
+                    <tr>
+                        <td>#{tipos.id}</td>
+                        <td>#{tipos.descricao}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+    </ui:define>
+</ui:composition>
+

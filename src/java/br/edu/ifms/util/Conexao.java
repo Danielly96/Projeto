@@ -13,23 +13,31 @@ import org.hibernate.Transaction;
  * @author Danielly
  */
 public class Conexao {
+
     private Session sess;
     private Transaction tra;
-    
-    public Conexao(){
-        this.sess = HibernateUtil.getSessionFactory().openSession();
-        this.tra = sess.beginTransaction();
-    }
-    
-    public void inicializa(){
-        if(!this.sess.isOpen()){
-        this.sess = HibernateUtil.getSessionFactory().openSession();
-        }
-        if(!this.tra.isActive()){
-         this.tra = sess.beginTransaction();
+    private RetornoAcao retornoAcao;
+
+    public Conexao() {
+        try {
+            this.sess = HibernateUtil.getSessionFactory().openSession();
+            this.tra = sess.beginTransaction();
+        } catch (Exception e) {
+            this.retornoAcao.setErro(true);
+            System.out.println(e.getMessage());
         }
     }
-    public void executar(){
+
+    public void inicializa() {
+        if (!this.sess.isOpen()) {
+            this.sess = HibernateUtil.getSessionFactory().openSession();
+        }
+        if (!this.tra.isActive()) {
+            this.tra = sess.beginTransaction();
+        }
+    }
+
+    public void executar() {
         this.tra.commit();
         this.sess.close();
     }

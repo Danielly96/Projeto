@@ -7,6 +7,7 @@ package br.edu.ifms.controller;
 
 import br.edu.ifms.mapeamento.MaquinaMapeamento;
 import br.edu.ifms.model.MaquinaModel;
+import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +23,27 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class MaquinaBean implements Serializable {
 
-    private MaquinaMapeamento mm;  //
-    private MaquinaModel mmodel;
+    private MaquinaMapeamento maquinaMapeamento;
+    private MaquinaModel maquinaModel;
     private String msg;
+    private RetornoAcao retornoAcao;
     private List<MaquinaMapeamento> listaDeMaquinas;
 
     public MaquinaBean() {
-        this.mm = new MaquinaMapeamento();
-        this.mmodel = new MaquinaModel();
+        this.maquinaMapeamento = new MaquinaMapeamento();
+        try {
+              this.maquinaModel = new MaquinaModel();
+        } catch (Exception e) {
+            this.msg = e.getMessage();
+        }
         this.listaDeMaquinas = new ArrayList<>();
     
     } 
 
     public void salvar() {
         try {
-            mmodel.inserir(mm);
-            this.mm = new MaquinaMapeamento();
+            maquinaModel.inserir(maquinaMapeamento);
+            this.maquinaMapeamento = new MaquinaMapeamento();
             this.msg = "Salvo com sucesso!";
         } catch (Exception e) {
             this.msg = "Erro " + e.getMessage();
@@ -45,7 +51,7 @@ public class MaquinaBean implements Serializable {
     }
 
     public void buscarTodos() {
-        this.listaDeMaquinas = mmodel.buscarTodos();
+        this.listaDeMaquinas = maquinaModel.buscarTodos();
                       
     }
     /*public void excluir(){
@@ -62,20 +68,21 @@ public class MaquinaBean implements Serializable {
             this.msg = "Erro " + e.getMessage();
         }
     }*/
-    public MaquinaMapeamento getMm() {
-        return mm;
+
+    public MaquinaMapeamento getMaquinaMapeamento() {
+        return maquinaMapeamento;
     }
 
-    public void setMm(MaquinaMapeamento mm) {
-        this.mm = mm;
+    public void setMaquinaMapeamento(MaquinaMapeamento maquinaMapeamento) {
+        this.maquinaMapeamento = maquinaMapeamento;
     }
 
-    public MaquinaModel getMmodel() {
-        return mmodel;
+    public MaquinaModel getMaquinaModel() {
+        return maquinaModel;
     }
 
-    public void setMmodel(MaquinaModel mmodel) {
-        this.mmodel = mmodel;
+    public void setMaquinaModel(MaquinaModel mmodel) {
+        this.maquinaModel = mmodel;
     }
 
     public String getMsg() {
@@ -84,6 +91,14 @@ public class MaquinaBean implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public RetornoAcao getRetornoAcao() {
+        return retornoAcao;
+    }
+
+    public void setRetornoAcao(RetornoAcao retornoAcao) {
+        this.retornoAcao = retornoAcao;
     }
 
     public List<MaquinaMapeamento> getListaDeMaquinas() {

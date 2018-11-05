@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="template/template.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="view/maquina/cadastrarMaquina.xhtml" x="270" y="48" zoom="true"/>
+        <Node id="index.xhtml" x="20" y="41" zoom="true"/>
+        <Node id="view/maquina/buscarMaquina.xhtml" x="271" y="10" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

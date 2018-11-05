@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,12 +25,12 @@ import org.hibernate.annotations.CascadeType;
 @Table (name ="tipo")
 public class TipoMapeamento implements Serializable{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; 
     private String descricao;
-    @OneToMany(mappedBy="tipo", fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    private Collection maquinas;
+    //@OneToMany(mappedBy="tipo", fetch = FetchType.LAZY)
+    //@Cascade(CascadeType.ALL)
+    //private Collection maquinas;
 
 
     public TipoMapeamento(long id, String descricao) {

@@ -4,35 +4,44 @@
  * and open the template in the editor.
  */
 package br.edu.ifms.controller;
+
 import br.edu.ifms.mapeamento.TipoMapeamento;
 import br.edu.ifms.model.TipoModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
-public class TipoBean implements Serializable{
+@ManagedBean
+@ViewScoped
+public class TipoBean implements Serializable {
+
     private TipoMapeamento tmap;
     private TipoModel tmodel;
+    private List<TipoMapeamento> listaDeTipos;
 
     public TipoBean() {
         this.tmap = new TipoMapeamento();
         this.tmodel = new TipoModel();
         this.listaDeTipos = new ArrayList<>();
     }
-     public void salvar(){
-        try{
-            tmodel.inserir(tmap);
+
+    public void salvar() {
+        try {
+            this.tmodel.inserir(this.tmap);
             this.tmap = new TipoMapeamento();
-           // this.msg = "Salvo com Sucesso!";
-        }catch(Exception e){
+            // this.msg = "Salvo com Sucesso!";
+        } catch (Exception e) {
             //this.msg ="Erro"+e.getMessage();
         }
     }
-    public void buscarTodos(){
+
+    public void buscarTodos() {
         this.listaDeTipos = tmodel.buscarTodos();
     }
 
@@ -51,13 +60,13 @@ public class TipoBean implements Serializable{
     public void setTmodel(TipoModel tmodel) {
         this.tmodel = tmodel;
     }
- public List<TipoMapeamento> getListaDeTipos() {
+
+    public List<TipoMapeamento> getListaDeTipos() {
         return listaDeTipos;
     }
 
     public void setListaDeFuncoes(List<TipoMapeamento> listaDeTipos) {
         this.listaDeTipos = listaDeTipos;
     }
-    private List<TipoMapeamento> listaDeTipos;
-     
+
 }

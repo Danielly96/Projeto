@@ -51,6 +51,8 @@ public class MaquinaMapeamento implements Serializable {
     @Cascade(CascadeType.ALL)
     private Collection subconjunto;
 
+    public MaquinaMapeamento(){}
+    
     public MaquinaMapeamento(long id, String descricao, long idTipoMapeamento, FabricanteMapeamento fabricante) {
         this.id = id;
         this.descricao = descricao;
@@ -79,8 +81,6 @@ public class MaquinaMapeamento implements Serializable {
     public void setTipo(TipoMapeamento tipo) {
         this.tipo = tipo;
     }  
-    public MaquinaMapeamento() {
-    }
 
     public long getId() {
         return id;
