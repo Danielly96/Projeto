@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body onload="#{manutencaoBean.buscarTodos()}">
+        <h1>Buscar Manutencoes</h1>
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>Maquina Id</td>
+                <td>Prioridade Id</td>
+                <td>Funcionario Identificou Id</td>
+                <td>Funcionario Manutencao Id</td>
+                <td>Descricao Problema</td>
+                <td>Descricao Solucao</td>
+                <td>Data Identificou</td>
+                <td>Data Marcada</td>
+                <td>Data Realizada</td>         
+            </tr>
+            <ui:repeat value="#{manutencaocaoBean.listaDeManutencoes}" var="item">
+            <tr>
+                 <td>#{item.id}</td>
+                 <td>#{item.maquinaId}</td>
+                 <td>#{item.prioridadeId}</td>
+                 <td>#{item.funcionarioIdentificouId}</td>
+                 <td>#{item.funcionarioManutencaoId}</td>
+                 <td>#{item.descricaoProblema}</td>
+                 <td>#{item.descricaoSolucao}</td>
+                 <td>#{item.dataIdentificou}</td>
+                 <td>#{item.dataMarcada}</td>
+                 <td>#{item.dataRealizada}</td>             
+            </tr>
+                </ui:repeat>
+        </table>
+    </h:body>
+</html>

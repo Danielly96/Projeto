@@ -32,7 +32,7 @@ public class FabricanteMapeamento extends MaquinaMapeamento{
     private String email;
     @OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
-    private Collection maquinas;
+    private Collection maquina;
 
     public FabricanteMapeamento(long id, String nome, String telefone, String email) {
         this.id = id;

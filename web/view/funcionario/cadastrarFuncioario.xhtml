@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml">
+    
+    <ui:define name="corpo">
+        <h1> Cadastro de Funcionario</h1>
+        <form>
+            <h:panelGrid columns="2">
+                Matricula: <h:inputText value="#{funcionarioBean.funcionarioMapeamento.funcao}"/>
+                Nome: <h:inputText value="#{funcionarioBean.funcionarioMapeamento.funcao}"/>
+                Funcao Id: <h:inputText value="#{funcionarioBean.funcionarioMapeamento.funcao}"/>
+                <h:commandButton value="salvar" action= "#{funcionarioBean.salvar()}"/>
+            </h:panelGrid>
+            #{funcionarioBean.msg}
+        </form>
+    </ui:define>
+</ui:composition>
+
