@@ -8,7 +8,8 @@ and open the template in the editor.
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/template.xhtml">
+                template="/template/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="corpo">
         <h2> Cadastro Tipo de Máquinas</h2>
@@ -21,16 +22,16 @@ and open the template in the editor.
             <h:commandButton class="btn btn-success" value="salvar" action= "#{tipoBean.salvar()}"/>
             #{maquinaBean.msg}
         </h:form>
-        <br/><br/><br/>
-        <h4>Tipos já cadastrados</h4>
-        <table class="table table-striped" onload="#{tipoBean.buscarTodos()}">
+        <br/><br/>
+        <h3>Tipos já cadastrados</h3>
+        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{tipoBean.buscarTodos()}">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Descrição</th>
-                </tr>
+                </tr>   
             </thead>
-            <tbody>
+            <tbody> 
                 <ui:repeat value="#{tipoBean.listaDeTipos}" var="tipos">
                     <tr>
                         <td>#{tipos.id}</td>
@@ -39,6 +40,21 @@ and open the template in the editor.
                 </ui:repeat>
             </tbody>
         </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+
     </ui:define>
 </ui:composition>
 

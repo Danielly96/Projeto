@@ -6,16 +6,11 @@
 package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -55,7 +50,6 @@ public class TipoMapeamento implements Serializable{
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-    
+    }    
     
 }

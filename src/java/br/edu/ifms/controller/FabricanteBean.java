@@ -10,14 +10,19 @@ import br.edu.ifms.model.FabricanteModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
+@ManagedBean
+@ViewScoped
 public class FabricanteBean implements Serializable{
     private FabricanteMapeamento fmap;
     private FabricanteModel fmodel;
+    private List<FabricanteMapeamento> listaDeFabricantes;
 
     public FabricanteBean() {
         this.fmap = new  FabricanteMapeamento() ;
@@ -58,8 +63,6 @@ public class FabricanteBean implements Serializable{
 
     public void setListaDeFabricantes(List<FabricanteMapeamento> listaDeFabricantes) {
         this.listaDeFabricantes = listaDeFabricantes;
-    }
-    private List<FabricanteMapeamento> listaDeFabricantes;
-     
+    }   
     
 }

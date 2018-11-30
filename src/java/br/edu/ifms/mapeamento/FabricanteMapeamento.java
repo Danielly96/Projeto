@@ -4,35 +4,30 @@
  * and open the template in the editor.
  */
 package br.edu.ifms.mapeamento;
-import java.util.Collection;
+import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 
 /**
  *
  * @author Danielly
  */
 @Entity
-@PrimaryKeyJoinColumn(name="idFrabricanteMapeamento")
+//@PrimaryKeyJoinColumn(name="idFrabricanteMapeamento")
 @Table (name ="fabricante")
-public class FabricanteMapeamento extends MaquinaMapeamento{
+public class FabricanteMapeamento implements Serializable{
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id; 
     private String nome;
     private String telefone;
     private String email;
-    @OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    private Collection maquina;
+    //@OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
+    //@Cascade(CascadeType.ALL)
+    //private Collection maquina;
 
     public FabricanteMapeamento(long id, String nome, String telefone, String email) {
         this.id = id;

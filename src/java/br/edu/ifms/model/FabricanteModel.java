@@ -14,17 +14,19 @@ import java.util.List;
  *
  * @author Danielly
  */
-public class FabricanteModel extends Conexao{
-     public void inserir(FabricanteMapeamento fabricanteMapeamento){
+public class FabricanteModel extends Conexao {
+
+    public void inserir(FabricanteMapeamento fabricanteMapeamento) {
         super.inicializa();
         super.getSess().save(fabricanteMapeamento);
         super.executar();
     }
-    public List<FabricanteMapeamento> buscarTodos(){
-       List<FabricanteMapeamento> listaDeFabricantes = new ArrayList<>();
-       super.inicializa();
-       listaDeFabricantes = super.getSess().createQuery("from FabricanteMapeamento").list();
-       super.executar();
-       return listaDeFabricantes;
+
+    public List<FabricanteMapeamento> buscarTodos() {
+        List<FabricanteMapeamento> listaDeFabricantes = new ArrayList<>();
+        super.inicializa();
+        listaDeFabricantes = super.getSess().createQuery("from FabricanteMapeamento").list();
+        super.executar();
+        return listaDeFabricantes;
     }
 }

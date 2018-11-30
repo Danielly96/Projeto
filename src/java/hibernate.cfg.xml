@@ -8,5 +8,6 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="br.edu.ifms.mapeamento.TipoMapeamento"/>
+    <mapping class="br.edu.ifms.mapeamento.FabricanteMapeamento"/>
   </session-factory>
 </hibernate-configuration>
