@@ -5,18 +5,50 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml">
-    
+
     <ui:define name="corpo">
-        <h1> Cadastro de Funcao</h1>
-        <form>
-            <h:panelGrid columns="2">
-                Id: <h:inputText value="#{funcaoBean.funcaoMapeamento.funcionario}"/>
-                Descrição: <h:inputText value="#{funcaoBean.funcaoMapeamento.funcionario}"/>
-                Funcionario Id: <h:inputText value="#{funcaoBean.funcaoMapeamento.funcionario}"/>
-                <h:commandButton value="salvar" action= "#{funcaoBean.salvar()}"/>
-            </h:panelGrid>
-            #{funcaoBean.msg}
-        </form>
+        <h1> Cadastro de Função</h1>
+        <h:form>
+            <div class="form-group">
+                <label for="lblDescricao">Descrição</label>                
+                <h:inputText class="form-control" id="lblDescricao" value="#{funcaoBean.funcaomape.descricao}"/>
+            </div>
+            <h:commandButton class="btn btn-success" value="salvar" action= "#{funcaoBean.salvar()}"/>
+        </h:form>
+
+        <br/><br/>
+        <h3>Funções já cadastradas</h3>
+        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{funcaoBean.buscarTodos()}">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                </tr>   
+            </thead>
+            <tbody> 
+                <ui:repeat value="#{funcaoBean.listaDeFuncoes}" var="funcoes">
+                    <tr>
+                        <td>#{funcoes.id}</td>
+                        <td>#{funcoes.descricao}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+
     </ui:define>
 </ui:composition>
 

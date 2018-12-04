@@ -5,18 +5,62 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml">
-    
+
     <ui:define name="corpo">
         <h1> Cadastro de Funcionario</h1>
-        <form>
-            <h:panelGrid columns="2">
-                Matricula: <h:inputText value="#{funcionarioBean.funcionarioMapeamento.funcao}"/>
-                Nome: <h:inputText value="#{funcionarioBean.funcionarioMapeamento.funcao}"/>
-                Funcao Id: <h:inputText value="#{funcionarioBean.funcionarioMapeamento.funcao}"/>
-                <h:commandButton value="salvar" action= "#{funcionarioBean.salvar()}"/>
-            </h:panelGrid>
-            #{funcionarioBean.msg}
-        </form>
+        <h:form>
+            <div class="form-group">
+                <label for="lblMatricula">Matricula</label>                
+                <h:inputText class="form-control" id="lblMatricula" value="#{funcionarioBean.}"/>
+            </div>
+            <div class="form-group">
+                <label for="lblTelefone">Telefone</label>                
+                <h:inputText class="form-control" id="lblTelefone" value="#{fabricanteBean.fmap.telefone}"/>
+            </div>
+            <div class="form-group">
+                <label for="lblEmail">E-Mail</label>                
+                <h:inputText class="form-control" id="lblEmail" value="#{fabricanteBean.fmap.email}"/>
+            </div>
+            <h:commandButton class="btn btn-success" value="salvar" action= "#{fabricanteBean.salvar()}"/>
+        </h:form>
+
+        <br/><br/>
+        <h3>Fabricantes já cadastrados</h3>
+        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{fabricanteBean.buscarTodos()}">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">E-Mail</th>
+                </tr>   
+            </thead>
+            <tbody> 
+                <ui:repeat value="#{fabricanteBean.listaDeFabricantes}" var="fabricantes">
+                    <tr>
+                        <td>#{fabricantes.id}</td>
+                        <td>#{fabricantes.nome}</td>
+                        <td>#{fabricantes.telefone}</td>
+                        <td>#{fabricantes.email}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+
     </ui:define>
 </ui:composition>
 

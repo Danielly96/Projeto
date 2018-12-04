@@ -9,15 +9,20 @@ import br.edu.ifms.model.PrioridadeModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
+@ManagedBean
+@ViewScoped
 public class PrioridadeBean implements Serializable {
 
     private PrioridadeMapeamento prioridademape;
     private PrioridadeModel prioridademodel;
+    private List<PrioridadeMapeamento> listaDePrioridades;
 
     public PrioridadeBean() {
         this.prioridademape = new PrioridadeMapeamento();
@@ -62,5 +67,4 @@ public class PrioridadeBean implements Serializable {
     public void setListaDePrioridades(List<PrioridadeMapeamento> listaDePrioridades) {
         this.listaDePrioridades = listaDePrioridades;
     }
-    private List<PrioridadeMapeamento> listaDePrioridades;
 }

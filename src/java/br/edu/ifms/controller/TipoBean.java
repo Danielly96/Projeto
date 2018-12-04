@@ -33,7 +33,7 @@ public class TipoBean implements Serializable {
 
     public void salvar() {
         try {
-            this.tmodel.inserir(this.tmap);
+          tmodel.inserir(tmap);
             this.tmap = new TipoMapeamento();
             // this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {

@@ -9,14 +9,19 @@ import br.edu.ifms.model.PecaModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
+@ManagedBean
+@ViewScoped
 public class PecaBean implements Serializable{
     private PecaMapeamento pecamape;
     private PecaModel pecamodel;
+    private List<PecaMapeamento> listaDePecas;
 
     public PecaBean() {
         this.pecamape = new PecaMapeamento();
@@ -58,7 +63,5 @@ public class PecaBean implements Serializable{
     public void setListaDePecas(List<PecaMapeamento> listaDePecas) {
         this.listaDePecas = listaDePecas;
     }
-    private List<PecaMapeamento> listaDePecas;
-    
-}
+   }
 

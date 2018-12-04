@@ -10,14 +10,19 @@ import br.edu.ifms.model.FuncaoModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
+@ManagedBean
+@ViewScoped
 public class FuncaoBean implements Serializable{
     private FuncaoMapeamento funcaomape;
     private FuncaoModel funcaomodel;
+    private List<FuncaoMapeamento> listaDeFuncoes;
 
     public FuncaoBean() {
         this.funcaomape = new FuncaoMapeamento();
@@ -59,6 +64,4 @@ public class FuncaoBean implements Serializable{
     public void setListaDeFuncoes(List<FuncaoMapeamento> listaDeFuncoes) {
         this.listaDeFuncoes = listaDeFuncoes;
     }
-    private List<FuncaoMapeamento> listaDeFuncoes;
-     
 }

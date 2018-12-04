@@ -7,17 +7,49 @@
                 template="/template/template.xhtml">
     
     <ui:define name="corpo">
-        <h1> Cadastro de Prioridade</h1>
-        <form>
-            <h:panelGrid columns="2">
-                Id: <h:inputText value="#{prioridadeBean.prioridadeMapeamento.manutencao}"/>
-                Descrição: <h:inputText value="#{prioridadeBean.prioridadeMapeamento.manutencao}"/>
-                Quantidade de Dias: <h:inputText value="#{prioridadeBean.prioridadeMapeamento.manutencao}"/>
-                Manutencao Id: <h:inputText value="#{prioridadeBean.prioridadeMapeamento.manutencao}"/>
-                <h:commandButton value="salvar" action= "#{prioridade.salvar()}"/>
-            </h:panelGrid>
-            #{prioridadeBean.msg}
-        </form>
+        <h1> Cadastro Prioridade</h1>
+        <h:form>
+            <div class="form-group">
+                <label for="lblDescricao">Descrição</label>                
+                <h:inputText class="form-control" id="lblDescricao" value="#{prioridadeBean.prioridademape.descricao}"/>
+            </div>
+
+            <h:commandButton class="btn btn-success" value="salvar" action= "#{prioridadeBean.salvar()}"/>
+           </h:form>
+        <br/><br/>
+        <h3>Prioridades já cadastrados</h3>
+        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{prioridadeBean.buscarTodos()}">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                </tr>   
+            </thead>
+            <tbody> 
+                <ui:repeat value="#{prioridadeBean.listaDePrioridades}" var="prioridades">
+                    <tr>
+                        <td>#{prioridades.id}</td>
+                        <td>#{prioridades.descricao}</td>
+                        <td>#{prioridades.qntdias}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+
     </ui:define>
 </ui:composition>
 
