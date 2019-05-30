@@ -16,7 +16,7 @@ public class LoginMB {
   public String doEfetuarLogin() {
     if("gerente".equals(usuario.getLogin())
             && "123".equals(usuario.getSenha())) {
-      return "fluxograma3";
+      return "Fluxograma3";
     } else {
       /* Cria uma mensagem. */
       FacesMessage msg = new FacesMessage("Usuário ou senha inválido!");
