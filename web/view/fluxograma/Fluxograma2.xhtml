@@ -7,21 +7,63 @@ and open the template in the editor.
 <!DOCTYPE html>
 <ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/view/principal.xhtml">
-    
-        
+                template="/template/template.xhtml">
+
+    <ui:define name="menu">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list" >
+                            </span>Menu</a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <span class=""></span><h:link outcome="/view/home.xhtml" value="Inicio"/>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class=""></span><h:link outcome="/view/areas.xhtml" value="Areas"/>
+                            </td>
+                            </tr>     
+                            <tr>
+                                <td>
+                                    <span class=""></span><h:link outcome="/view/fluxograma/Fluxograma2.xhtml" value="Fluxograma 2"/>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class=""></span><h:link outcome="/view/fluxograma/Fluxograma3.xhtml" value="Fluxograma 3"/>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class=""></span><h:link outcome="/view/maquinaSelecionada.xhtml" value="Maquina Selecionada"/>
+                            </td>
+                            </tr>                   
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
     <ui:define name="corpo">
-        <font style="color: #1C1C1C" text-align="center"> <h3>Selecione uma Maquina Abaixo!</h3></font> 
+        <font style="color: #1C1C1C" text-align="center"> <h3>Selecione Uma Máquina:</h3></font> 
         <style type="text/css">
             td {
                 height: 50px;
                 width: 50px;
             }
-            
+
             table {
                 border: 0px;
                 background-image: url(resources/imagens/fluxogramaArea3.png);
-                background-size:80%;
+                background-size:115%;
                 width: 600px;
                 background-repeat: no-repeat;
                 background-position: top center;
@@ -35,7 +77,7 @@ and open the template in the editor.
                     <td>1/2</td>
                     <td>1/3</td>
                     <td>1/4</td>
-                    <td>1/5</td>
+                    <td></td>
                     <td>1/6</td>
                     <td>1/7</td>
                     <td>1/8</td>
@@ -49,99 +91,99 @@ and open the template in the editor.
                     <td>2/3</td>
                     <td>2/4</td>
                     <td>2/5</td>
-                    <td>2/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>3/1</td>
-                    <td>3/2</td>
-                    <td>3/3</td>
-                    <td>3/4</td>
-                    <td>3/5</td>
-                    <td>3/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>4/1</td>
-                    <td>4/2</td>
-                    <td>4/3</td>
-                    <td>4/4</td>
-                    <td>4/5</td>
-                    <td>4/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>5/1</td>
-                    <td>5/2</td>
-                    <td>5/3</td>
-                    <td>5/4</td>
-                    <td></td>
-                    <td><h:link outcome="/view/fluxograma/Fluxograma3" style="font-weight: 900; color:white ; text-align: left;" value="AREA 03"/></td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>6/1</td>
-                    <td>6/2</td>
-                    <td>6/3</td>
-                    <td>6/4</td>
-                    <td>6/5</td>
-                    <td><h:link outcome="/view/fluxograma/Fluxograma3" style="font-weight: 900; color:white; text-align: left;" value="AREA 03"/></td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>7/1</td>
-                    <td>7/2</td>
-                    <td>7/3</td>
-                    <td>7/4</td>
-                    <td>7/5</td>
-                    <td>7/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>8/1</td>
-                    <td>8/2</td>
-                    <td>8/3</td>
-                    <td>8/4</td>
-                    <td><h:link outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 900; color:white ; text-align: left;" value="Esteira"/></td>
-                    <td>8/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                <tr>
-                    <td>9/1</td>
-                    <td>9/2</td>
-                    <td>9/3</td>
-                    <td>9/4</td>
-                    <td>9/5</td>
-                    <td>9/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
-                 <tr>
-                    <td>10/1</td>
-                    <td>10/2</td>
-                    <td>10/3</td>
-                    <td>10/4</td>
-                    <td>10/5</td>
-                    <td>10/6</td>
-                    <td>1/7</td>
-                    <td>1/8</td>
-                    <td>1/9</td>
-                </tr>
+                    <td><h:button outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Trator"/></td>
+            <td>1/7</td>
+            <td>1/8</td>
+            <td>1/9</td>
+            </tr>
+            <tr>
+                <td>3/1</td>
+                <td>3/2</td>
+                <td>3/3</td>
+                <td>3/4</td>
+                <td>3/5</td>
+                <td>3/6</td>
+                <td>1/7</td>
+                <td><h:button outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Esteira"/></td>
+            <td>1/9</td>
+            </tr>
+            <tr>
+                <td>4/1</td>
+                <td>4/2</td>
+                <td>4/3</td>
+                <td>4/4</td>
+                <td>4/5</td>
+                <td>4/6</td>
+                <td>1/7</td>
+                <td>1/8</td>
+                <td>1/9</td>
+            </tr>
+            <tr>
+                <td>5/1</td>
+                <td>5/2</td>
+                <td>5/3</td>
+                <td>5/4</td>
+                <td></td>
+                <td></td>
+                <td>1/7</td>
+                <td></td>
+                <td>1/9</td>
+            </tr>
+            <tr>
+                <td>6/1</td>
+                <td>6/2</td>
+                <td>6/3</td>
+                <td>6/4</td>
+                <td>6/5</td>
+                <td></td>
+                <td>1/7</td>
+                <td>1/8</td>
+                <td>1/9</td>
+            </tr>
+            <tr>
+                <td>7/1</td>
+                <td>7/2</td>
+                <td>7/3</td>
+                <td>7/4</td>
+                <td>7/5</td>
+                <td>7/6</td>
+                <td>1/7</td>
+                <td>1/8</td>
+                <td>1/9</td>
+            </tr>
+            <tr>
+                <td>8/1</td>
+                <td>8/2</td>
+                <td>8/3</td>
+                <td>8/4</td>
+                <td></td>
+                <td>8/6</td>
+                <td>1/7</td>
+                <td>1/8</td>
+                <td>1/9</td>
+            </tr>
+            <tr>
+                <td>9/1</td>
+                <td>9/2</td>
+                <td>9/3</td>
+                <td>9/4</td>
+                <td>9/5</td>
+                <td>9/6</td>
+                <td>1/7</td>
+                <td>1/8</td>
+                <td>1/9</td>
+            </tr>
+            <tr>
+                <td>10/1</td>
+                <td>10/2</td>
+                <td>10/3</td>
+                <td>10/4</td>
+                <td>10/5</td>
+                <td>10/6</td>
+                <td>1/7</td>
+                <td>1/8</td>
+                <td>1/9</td>
+            </tr>
             </tbody>
         </table>
 

@@ -10,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
@@ -23,11 +26,12 @@ import org.hibernate.annotations.FetchMode;
  * @author Danielly
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "manutencao")
 public class ManutencaoMapeamento implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     private MaquinaMapeamento maquinaId;

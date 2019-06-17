@@ -7,33 +7,44 @@ package br.edu.ifms.controller;
 
 import br.edu.ifms.mapeamento.SubconjuntoMapeamento;
 import br.edu.ifms.model.SubconjuntoModel;
+import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
-public class SubconjuntoBean implements Serializable{
+@ManagedBean
+@ViewScoped
+public class SubconjuntoBean implements Serializable {
+
     private SubconjuntoMapeamento subconjuntomape;
     private SubconjuntoModel subconjuntomodel;
+    private String msg;
+    private RetornoAcao retornoAcao;
+    private List<SubconjuntoMapeamento> listaDeSubconjuntos;
 
     public SubconjuntoBean() {
         this.subconjuntomape = new SubconjuntoMapeamento();
-        this.subconjuntomodel =new SubconjuntoModel();
-          this.listaDeSubconjuntos = new ArrayList<>();
+        this.subconjuntomodel = new SubconjuntoModel();
+        this.listaDeSubconjuntos = new ArrayList<>();
     }
-      public void salvar(){
-        try{
+
+    public void salvar() {
+        try {
             subconjuntomodel.inserir(subconjuntomape);
             this.subconjuntomape = new SubconjuntoMapeamento();
-           // this.msg = "Salvo com Sucesso!";
-        }catch(Exception e){
+            // this.msg = "Salvo com Sucesso!";
+        } catch (Exception e) {
             //this.msg ="Erro"+e.getMessage();
         }
     }
-    public void buscarTodos(){
+
+    public void buscarTodos() {
         this.listaDeSubconjuntos = subconjuntomodel.buscarTodos();
     }
 
@@ -52,12 +63,28 @@ public class SubconjuntoBean implements Serializable{
     public void setSubconjuntomodel(SubconjuntoModel subconjuntomodel) {
         this.subconjuntomodel = subconjuntomodel;
     }
- public List<SubconjuntoMapeamento> getListaDeSubconjuntos() {
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public RetornoAcao getRetornoAcao() {
+        return retornoAcao;
+    }
+
+    public void setRetornoAcao(RetornoAcao retornoAcao) {
+        this.retornoAcao = retornoAcao;
+    }
+
+    public List<SubconjuntoMapeamento> getListaDeSubconjuntos() {
         return listaDeSubconjuntos;
     }
 
     public void setListaDeSubconjuntos(List<SubconjuntoMapeamento> listaDeSubconjuntos) {
-        this.listaDeSubconjuntos= listaDeSubconjuntos;
+        this.listaDeSubconjuntos = listaDeSubconjuntos;
     }
-    private List<SubconjuntoMapeamento> listaDeSubconjuntos;
 }

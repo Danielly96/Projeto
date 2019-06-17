@@ -8,7 +8,6 @@ and open the template in the editor.
 <ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml">
-
     <ui:define name="menu">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -28,7 +27,7 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td>
-                                    <span class=""></span><h:link outcome="/view/areas.xhtml" value="Áreas"/>
+                                    <span class=""></span><h:link outcome="/view/areas.xhtml" value="Areas"/>
                             </td>
                             </tr>     
                             <tr>
@@ -53,35 +52,38 @@ and open the template in the editor.
         </div>
     </ui:define>
     <ui:define name="corpo">
-        <font style="color: #1C1C1C" text-align="center"> <h3>Esteira Transportadora</h3></font> 
-        <h:graphicImage library="imagens" name="esteira.jpg" style="width:50%"/>
+        <font style="color: #245580" text-align="center" > <h3>Selecione Uma Area Abaixo:</h3></font> 
+        <!--h:graphicImage library="imagens" name="areas.jpg" style="width:60%"/-->
 
         <style type="text/css">
             td {
                 height: 50px;
                 width: 50px;
-                font-weight: bold;
             }
 
             table {
                 border: 0px;
-                background-size:80%;
+                background-image: url(resources/imagens/areas.jpg);
+                background-size:85%;
                 width: 600px;
                 background-repeat: no-repeat;
                 background-position: top center;
             }
         </style>
-        <table width="100%" border="1px">
+
+        <table style="">
 
             <thead>
                 <tr>
-                    <td>Id</td>
-                    <td>Descrição</td>
-                    <td>IdTipo</td>
-                    <td>Fabricante</td>
-                    <td>Tipo Mapeamento</td>
-                    <td>Manutenção</td>
-                    <td>Subconjunto</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -93,13 +95,6 @@ and open the template in the editor.
                     <td></td>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -108,21 +103,91 @@ and open the template in the editor.
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
+                    <td><h:button outcome="/view/fluxograma/Fluxograma3" style="font-weight: 700; color:black ; text-align: left;" value="AREA 03"/></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><h:button outcome="/view/fluxograma/Fluxograma2" style="font-weight: 700; color:black ; text-align: left;" value="AREA 02"/></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><h:button outcome="/view/fluxograma/Fluxograma3" style="font-weight: 700; color:black ; text-align: left;" value="AREA 01"/></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
+
     </ui:define>
 </ui:composition>

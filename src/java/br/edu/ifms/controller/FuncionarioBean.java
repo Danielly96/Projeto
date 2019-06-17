@@ -10,11 +10,15 @@ import br.edu.ifms.model.FuncionarioModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Danielly
  */
+@ManagedBean
+@ViewScoped
 public class FuncionarioBean implements Serializable {
     private FuncionarioMapeamento fmape;
     private FuncionarioModel fmodel;

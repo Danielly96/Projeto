@@ -1,26 +1,29 @@
-?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml">
-    
+
     <ui:define name="corpo">
         <h1> Cadastro de Manutencao</h1>
         <form>
             <h:panelGrid columns="2">
-                Id: <h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Maquina Id<h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Prioridade Id: <h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Funcionario Identificou Id: <h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Funcionario Manutencao Id: <h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Descricao Problema: <h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Descricao Solucao: <h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Data Identificou<h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Data Marcada<h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-                Data Realizada<h:inputText value="#{manutencaoBean.manutencaoMapeamento.prioridade}"/>
-            <h:commandButton value="salvar" action= "#{manutencaoBean.salvar()}"/>
+                Id: <h:inputText value="#{manutencaoBean.manutencaomape.id}"/>
+                Maquina :<h:inputText value="#{manutencaoBean.manutencaomape.maquina}"/>
+                Maquina Id:<h:inputText value="#{manutencaoBean.manutencaomape.maquinaId}"/>
+                Prioridade: <h:inputText value="#{manutencaoBean.manutencaomape.prioridade}"/>
+                Prioridade Id: <h:inputText value="#{manutencaoBean.manutencaomape.prioridadeId}"/>
+                Funcionario Identificou Id: <h:inputText value="#{manutencaoBean.manutencaomape.funcionarioQueIdentificouId}"/>
+                Funcionario Manutencao Id: <h:inputText value="#{manutencaoBean.manutencaomape.funcionarioQueFezManutencaoId}"/>
+                Descricao Problema: <h:inputText value="#{manutencaoBean.manutencaomape.descricaoDoProblema}"/>
+                Descricao Solucao: <h:inputText value="#{manutencaoBean.manutencaomape.descricaoDaSolucao}"/>
+                Data Identificou<h:inputText value="#{manutencaoBean.manutencaomape.dataQueIdentificou}"/>
+                Data Marcada<h:inputText value="#{manutencaoBean.manutencaomape.dataManutencaoMarcada}"/>
+                Data Realizada<h:inputText value="#{manutencaoBean.manutencaomape.dataManutencaoRealizada}"/>
+                Em Manutenção<h:inputText value="#{manutencaoBean.manutencaomape.emManutencao}"/>
+                <h:commandButton value="salvar" action= "#{manutencaoBean.salvar()}"/>
             </h:panelGrid>
             #{manutencaoBean.msg}
         </form>

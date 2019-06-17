@@ -12,23 +12,19 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body onload="#{maquinaBean.buscarTodos()}">
-        <h1>Buscar Todos os registros de maquinas</h1>
+    <h:body onload="#{funcionarioBean.buscarTodos()}">
+        <h1>Buscar Todos os registros de funcionarios</h1>
         <table>
             <tr>
-                <td>ID:</td>
-                <td>Descrição:</td>
-                <td>Tipo Id:</td>
-                <td>Fabricante Id:</td>
-                <td>Manutenção:</td>
+                <td>Matricula</td>
+                <td>Nome</td>
+                <td>Função</td>
             </tr>
-            <ui:repeat value="#{maquinaBean.listaDeMaquinas}" var="item">
+            <ui:repeat value="#{funcionarioBean.listaDeFuncionarios}" var="item">
                 <tr>
-                    <td>#{item.id}</td>
-                    <td>#{item.descricao}</td>
-                    <td>#{item.idTipoMapeamento}</td>
-                    <td>#{item.fabricante}</td>
-                    <td>#{item.manutencao}</td>
+                    <td>#{item.matricula}</td>
+                    <td>#{item.nome}</td>
+                    <td>#{item.funcao}</td>
                 </tr>
             </ui:repeat>
         </table>

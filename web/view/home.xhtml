@@ -9,6 +9,25 @@ and open the template in the editor.
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml">
 
+
+    <ui:define name="corpo">   
+        <style type="text/css">
+            h1 {
+                color: black;
+                font-family:initial;
+                text-align: center;
+                font-size: 180%;
+            }
+            form{
+                
+            }
+        </style>
+        <h1>O objetivo deste sistema é utilizar as informações das máquinas e equipamentos,
+            com o intuito de auxiliar na tomada de decisão da manutenção,
+            a fim de intervir na situação de anormalidade em máquinas
+            e equipamentos na Mineradora.  <h:graphicImage library="imagens" name="inicio.png" style="width:50%"></h:graphicImage></h1>
+
+    </ui:define>
     <ui:define name="menu">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -51,78 +70,17 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-    </ui:define>
-    <ui:define name="corpo">
-        <font style="color: #1C1C1C" text-align="center"> <h3>Esteira Transportadora</h3></font> 
-        <h:graphicImage library="imagens" name="esteira.jpg" style="width:50%"/>
-
-        <style type="text/css">
-            td {
-                height: 50px;
-                width: 50px;
-                font-weight: bold;
-            }
-
-            table {
-                border: 0px;
-                background-size:80%;
-                width: 600px;
-                background-repeat: no-repeat;
-                background-position: top center;
-            }
-        </style>
-        <table width="100%" border="1px">
-
-            <thead>
-                <tr>
-                    <td>Id</td>
-                    <td>Descrição</td>
-                    <td>IdTipo</td>
-                    <td>Fabricante</td>
-                    <td>Tipo Mapeamento</td>
-                    <td>Manutenção</td>
-                    <td>Subconjunto</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </tbody>
-        </table>
+        <div>
+            <h:form id="formLogin">
+                <h1>Acesso Restrito de Informações </h1>
+                <h:form id="myform">
+                    <h:outputText value="Username: "/>
+                    <h:inputText label="Username" value="#{login.username}" /><br/><br/>
+                    <h:outputText value="Password: "/>
+                    <h:inputSecret value="#{login.password}" /><br/><br/>
+                    <h:commandButton value="login" action="#{login.login}" />
+                </h:form>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>
