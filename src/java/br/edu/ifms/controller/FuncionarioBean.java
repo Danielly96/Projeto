@@ -20,27 +20,35 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class FuncionarioBean implements Serializable {
+
     private FuncionarioMapeamento fmape;
     private FuncionarioModel fmodel;
     private String msg;
 
-    public FuncionarioBean(){
+    public FuncionarioBean() {
         this.fmape = new FuncionarioMapeamento();
         this.fmodel = new FuncionarioModel();
         this.listaDeFuncionarios = new ArrayList<>();
     }
-    public void salvar(){
-        try{
+
+    public void salvar() {
+        System.out.println("asdfasdfasdfasdfsadfsadfsadf");
+        System.out.println(fmape.getNome());
+        System.out.println("asdfasdfasdfasdfsadfsadfsadf");
+
+        try {
             fmodel.inserir(fmape);
             this.fmape = new FuncionarioMapeamento();
             this.msg = "Salvo com Sucesso!";
-        }catch(Exception e){
-            this.msg ="Erro"+e.getMessage();
+        } catch (Exception e) {
+            this.msg = "Erro" + e.getMessage();
         }
     }
-    public void buscarTodos(){
+
+    public void buscarTodos() {
         this.listaDeFuncionarios = fmodel.buscarTodos();
     }
+
     public FuncionarioMapeamento getFmape() {
         return fmape;
     }
@@ -72,5 +80,5 @@ public class FuncionarioBean implements Serializable {
     public void setListaDeFuncionarios(List<FuncionarioMapeamento> listaDeFuncionarios) {
         this.listaDeFuncionarios = listaDeFuncionarios;
     }
-    private List<FuncionarioMapeamento> listaDeFuncionarios;   
+    private List<FuncionarioMapeamento> listaDeFuncionarios;
 }
