@@ -20,6 +20,15 @@ public class FuncaoModel extends Conexao{
         super.getSess().save(funcaoMapeamento);
         super.executar();
     }
+     
+     public FuncaoMapeamento buscarPorId(Long id){
+        FuncaoMapeamento funcaoMapeamento;
+        super.inicializa();
+        funcaoMapeamento = (FuncaoMapeamento) super.getSess().get(FuncaoMapeamento.class, id);
+        super.executar();
+        return funcaoMapeamento;
+    }
+     
     public List<FuncaoMapeamento> buscarTodos(){
        List<FuncaoMapeamento> listaDeFuncoes = new ArrayList<>();
        super.inicializa();

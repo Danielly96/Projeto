@@ -5,7 +5,9 @@
  */
 package br.edu.ifms.controller;
 
+import br.edu.ifms.mapeamento.FuncaoMapeamento;
 import br.edu.ifms.mapeamento.FuncionarioMapeamento;
+import br.edu.ifms.model.FuncaoModel;
 import br.edu.ifms.model.FuncionarioModel;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,19 +25,23 @@ public class FuncionarioBean implements Serializable {
 
     private FuncionarioMapeamento fmape;
     private FuncionarioModel fmodel;
+    private FuncaoMapeamento funcaoMapeamento;
+    private FuncaoModel funcaoModel;
     private String msg;
+    private List<FuncionarioMapeamento> listaDeFuncionarios;
 
     public FuncionarioBean() {
         this.fmape = new FuncionarioMapeamento();
         this.fmodel = new FuncionarioModel();
         this.listaDeFuncionarios = new ArrayList<>();
+        this.funcaoMapeamento = new FuncaoMapeamento();
+        this.funcaoModel = new FuncaoModel();
     }
 
     public void salvar() {
-        System.out.println("asdfasdfasdfasdfsadfsadfsadf");
-        System.out.println(fmape.getNome());
-        System.out.println("asdfasdfasdfasdfsadfsadfsadf");
-
+        funcaoMapeamento = this.funcaoModel.buscarPorId(funcaoMapeamento.getId());
+        fmape.setFuncao(funcaoMapeamento);
+                
         try {
             fmodel.inserir(fmape);
             this.fmape = new FuncionarioMapeamento();
@@ -80,5 +86,21 @@ public class FuncionarioBean implements Serializable {
     public void setListaDeFuncionarios(List<FuncionarioMapeamento> listaDeFuncionarios) {
         this.listaDeFuncionarios = listaDeFuncionarios;
     }
-    private List<FuncionarioMapeamento> listaDeFuncionarios;
+
+    public FuncaoMapeamento getFuncaoMapeamento() {
+        return funcaoMapeamento;
+    }
+
+    public void setFuncaoMapeamento(FuncaoMapeamento funcaoMapeamento) {
+        this.funcaoMapeamento = funcaoMapeamento;
+    }
+
+    public FuncaoModel getFuncaoModel() {
+        return funcaoModel;
+    }
+
+    public void setFuncaoModel(FuncaoModel funcaoModel) {
+        this.funcaoModel = funcaoModel;
+    }
+
 }

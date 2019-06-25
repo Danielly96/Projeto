@@ -21,6 +21,7 @@ public class FuncionarioModel extends Conexao{
         super.getSess().save(funcionarioMapeamento);
         super.executar();
     }
+    
     public List<FuncionarioMapeamento> buscarTodos(){
        List<FuncionarioMapeamento> listaDeFuncionarios = new ArrayList<>();
        super.inicializa();
