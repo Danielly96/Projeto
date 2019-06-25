@@ -5,19 +5,67 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml">
-    
+
     <ui:define name="corpo">
         <h1> Cadastro de Maquinas</h1>
-        <form>
-            <h:panelGrid columns="2">
-                Id: <h:inputText value="#{maquinaBean.maquinaMapeamento.fabricante}"/>
-                Descrição: <h:inputText value="#{maquinaBean.maquinaMapeamento.fabricante}"/>
-                Tipo Id: <h:inputText value="#{maquinaBean.maquinaMapeamento.fabricante}"/>
-                Fabricante Id: <h:inputText value="#{maquinaBean.maquinaMapeamento.fabricante}"/>
-                <h:commandButton value="salvar" action= "#{maquinaBean.salvar()}"/>
-            </h:panelGrid>
-            #{maquinaBean.msg}
-        </form>
+        <h:form>
+            <div class="form-group">
+                <label for="lblDescricao">Descrição</label>                
+                <h:inputText class="form-control" id="lblDescricao" value="#{maquinaBean.maquinaMapeamento.descricao}"/>
+            </div>
+            <div class="form-group">
+                <label for="lblIdTipoMapeamento">Id Tipo</label>                
+                <h:inputText class="form-control" id="lblIdTipoMapeamento" value="#{maquinaBean.maquinaMapeamento.idTipoMapeamento}"/>
+            </div>
+            <div class="form-group">
+                <label for="lblTipo">Tipo</label>                
+                <h:inputText class="form-control" id="lblTipo" value="#{maquinaBean.maquinaMapeamento.tipo}"/>
+            </div>
+            <div class="form-group">
+                <label for="lblFabricante">Fabricante</label>                
+                <h:inputText class="form-control" id="lblFrabricante" value="#{maquinaBean.maquinaMapeamento.fabricante}"/>
+            </div>
+            <h:commandButton class="btn btn-success" value="salvar" action= "#{maquinaBean.salvar()}"/>
+        </h:form>
+
+        <br/><br/>
+        <h3>Maquinas já cadastradas</h3>
+        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{maquinaBean.buscarTodos()}">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">descrição</th>
+                    <th scope="col">Tipo Id</th>
+                    <th scope="col">Fabricante Id</th>
+                </tr>   
+            </thead>
+            <tbody> 
+                <ui:repeat value="#{maquinaBean.listaDeMaquinas}" var="maquinas">
+                    <tr>
+                        <td>#{maquinas.id}</td>
+                        <td>#{maquinas.descricao}</td>
+                        <td>#{maquinas.idTipoMapeamento}</td>
+                        <td>#{maquinas.tipo}</td>
+                        <td>#{maquinas.fabricante}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+
     </ui:define>
 </ui:composition>
 

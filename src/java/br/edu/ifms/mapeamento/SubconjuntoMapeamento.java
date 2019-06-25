@@ -6,6 +6,7 @@
 package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,8 +34,16 @@ public class SubconjuntoMapeamento implements Serializable {
     @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
      private MaquinaMapeamento maquina;
+    List<PecaMapeamento> peca;
 
-    public SubconjuntoMapeamento(long id, String descricao) {
+    public List<PecaMapeamento> getPeca() {
+        return peca;
+    }
+
+    public void setPeca(List<PecaMapeamento> peca) {
+        this.peca = peca;
+    }
+        public SubconjuntoMapeamento(long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
   

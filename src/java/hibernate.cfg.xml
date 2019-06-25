@@ -12,5 +12,8 @@
     <mapping class="br.edu.ifms.mapeamento.FabricanteMapeamento"/>
     <mapping class="br.edu.ifms.mapeamento.FuncaoMapeamento"/>
     <mapping class="br.edu.ifms.mapeamento.FuncionarioMapeamento"/>
+    <mapping class="br.edu.ifms.mapeamento.PecaMapeamento"/>
+    <mapping class="br.edu.ifms.mapeamento.PrioridadeMapeamento"/>
+    <mapping class="br.edu.ifms.mapeamento.PecaMapeamento"/>
   </session-factory>
 </hibernate-configuration>

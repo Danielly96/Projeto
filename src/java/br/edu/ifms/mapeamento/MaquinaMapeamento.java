@@ -7,6 +7,7 @@ package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,18 +23,18 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 
-
 /**
  *
  * @author Danielly
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@Table (name ="maquina")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "maquina")
 public class MaquinaMapeamento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; 
+    private long id;
     private String descricao;
     private long idTipoMapeamento;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -44,43 +45,37 @@ public class MaquinaMapeamento implements Serializable {
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
     private TipoMapeamento tipo;
-    @OneToMany(mappedBy="maquina", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "maquina", fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
-    private Collection manutencao;
-   // OneToMany(mappedBy="maquina", fetch = FetchType.LAZY)
+    private List<ManutencaoMapeamento> manutencao;
+    // OneToMany(mappedBy="maquina", fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
-    private Collection subconjunto;
+    private List<SubconjuntoMapeamento> subconjunto;
 
-    public MaquinaMapeamento(){}
     
-    public MaquinaMapeamento(long id, String descricao, long idTipoMapeamento, FabricanteMapeamento fabricante) {
-        this.id = id;
-        this.descricao = descricao;
-        this.idTipoMapeamento = idTipoMapeamento;
-        this.fabricante = fabricante;
-    }
-      public Collection getManutencao() {
+    public List<ManutencaoMapeamento> getManutencao() {
         return manutencao;
     }
-      public Collection getSubconjunto() {
+
+    public void setManutencao(List<ManutencaoMapeamento> manutencao) {
+        this.manutencao = manutencao;
+    }
+
+    public List<SubconjuntoMapeamento> getSubconjunto() {
         return subconjunto;
     }
 
-    public void setSubconjunto(Collection subconjunto) {
+    public void setSubconjunto(List<SubconjuntoMapeamento> subconjunto) {
         this.subconjunto = subconjunto;
     }
-  
-    public void setManutencao(Collection manutencao) {
-        this.manutencao = manutencao;
-    }
-    
+
     public TipoMapeamento getTipo() {
         return tipo;
     }
 
     public void setTipo(TipoMapeamento tipo) {
         this.tipo = tipo;
-    }  
+    }
 
     public long getId() {
         return id;
@@ -105,7 +100,7 @@ public class MaquinaMapeamento implements Serializable {
     public void setIdTipoMapeamento(long idTipoMapeamento) {
         this.idTipoMapeamento = idTipoMapeamento;
     }
-    
+
     public FabricanteMapeamento getFabricante() {
         return fabricante;
     }
@@ -113,5 +108,5 @@ public class MaquinaMapeamento implements Serializable {
     public void setFabricante(FabricanteMapeamento fabricante) {
         this.fabricante = fabricante;
     }
-    
+
 }
