@@ -18,10 +18,6 @@
                 <label for="lblmatricula">Matricula</label>                
                 <h:inputText class="form-control" id="lblTipo" value="#{funcionarioBean.fmape.matricula}"/>
             </div>
-            <!--div class="form-group">
-                <label for="lblFuncaoId">Função</label>                
-                <h:inputText class="form-control" id="lblIdTipoMapeamento" value="#{funcionarioBean.fmape.funcao}"/>
-            </div-->
             <div class="form-group" onload="#{funcaoBean.buscarTodos()}">
                 <label for="planoId">Função</label>
                 <h:selectOneMenu class="form-control" id="planoId" value="#{funcionarioBean.funcaoMapeamento.id}">

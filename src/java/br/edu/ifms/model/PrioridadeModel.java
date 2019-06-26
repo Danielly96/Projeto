@@ -20,6 +20,13 @@ public class PrioridadeModel  extends Conexao{
         super.getSess().save(prioridadeMapeamento);
         super.executar();
     }
+     public PrioridadeMapeamento buscarPorId(Long id){
+        PrioridadeMapeamento prioridadeMapeamento;
+        super.inicializa();
+        prioridadeMapeamento = (PrioridadeMapeamento) super.getSess().get(PrioridadeMapeamento.class, id);
+        super.executar();
+        return prioridadeMapeamento;
+    }
     public List<PrioridadeMapeamento> buscarTodos(){
        List<PrioridadeMapeamento> listaDePrioridades = new ArrayList<>();
        super.inicializa();

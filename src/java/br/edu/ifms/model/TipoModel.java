@@ -20,7 +20,13 @@ public class TipoModel extends Conexao{
         super.getSess().save(tipoMapeamento);
         super.executar();
     }
-     
+      public TipoMapeamento buscarPorId(Long id){
+        TipoMapeamento tipoMapeamento;
+        super.inicializa();
+        tipoMapeamento = (TipoMapeamento) super.getSess().get(TipoMapeamento.class, id);
+        super.executar();
+        return tipoMapeamento;
+    }
     public List<TipoMapeamento> buscarTodos(){
        List<TipoMapeamento> listaDeTipos = new ArrayList<>();
        super.inicializa();

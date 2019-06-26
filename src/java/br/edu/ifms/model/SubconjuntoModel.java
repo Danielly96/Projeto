@@ -19,6 +19,14 @@ public class SubconjuntoModel extends Conexao{
         super.getSess().save(subconjuntoMapeamento);
         super.executar();
     }
+     
+     public SubconjuntoMapeamento buscarPorId(Long id){
+        SubconjuntoMapeamento subconjuntoMapeamento;
+        super.inicializa();
+       subconjuntoMapeamento = (SubconjuntoMapeamento) super.getSess().get(SubconjuntoMapeamento.class, id);
+        super.executar();
+        return subconjuntoMapeamento;
+    }
     public List<SubconjuntoMapeamento> buscarTodos(){
        List<SubconjuntoMapeamento> listaDeSubconjuntos = new ArrayList<>();
        super.inicializa();

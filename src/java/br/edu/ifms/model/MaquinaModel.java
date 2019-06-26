@@ -23,6 +23,14 @@ public class MaquinaModel extends Conexao {
 
     }
 
+    public MaquinaMapeamento buscarPorId(Long id) {
+        MaquinaMapeamento maquinaMapeamento;
+        super.inicializa();
+        maquinaMapeamento = (MaquinaMapeamento) super.getSess().get(MaquinaMapeamento.class, id);
+        super.executar();
+        return maquinaMapeamento;
+    }
+
     public List<MaquinaMapeamento> buscarTodos() {
         List<MaquinaMapeamento> listaDeMaquinas = new ArrayList<>();
         super.inicializa();

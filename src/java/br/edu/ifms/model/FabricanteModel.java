@@ -22,6 +22,14 @@ public class FabricanteModel extends Conexao {
         super.executar();
     }
 
+    public FabricanteMapeamento buscarPorId(Long id) {
+        FabricanteMapeamento fabricanteMapeamento;
+        super.inicializa();
+        fabricanteMapeamento = (FabricanteMapeamento) super.getSess().get(FabricanteMapeamento.class, id);
+        super.executar();
+        return fabricanteMapeamento;
+    }
+
     public List<FabricanteMapeamento> buscarTodos() {
         List<FabricanteMapeamento> listaDeFabricantes = new ArrayList<>();
         super.inicializa();

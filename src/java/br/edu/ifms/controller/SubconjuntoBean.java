@@ -5,7 +5,9 @@
  */
 package br.edu.ifms.controller;
 
+import br.edu.ifms.mapeamento.MaquinaMapeamento;
 import br.edu.ifms.mapeamento.SubconjuntoMapeamento;
+import br.edu.ifms.model.MaquinaModel;
 import br.edu.ifms.model.SubconjuntoModel;
 import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
@@ -24,6 +26,8 @@ public class SubconjuntoBean implements Serializable {
 
     private SubconjuntoMapeamento subconjuntomape;
     private SubconjuntoModel subconjuntomodel;
+    private MaquinaMapeamento maquinaMapeamento;
+    private MaquinaModel maquinaModel;
     private String msg;
     private RetornoAcao retornoAcao;
     private List<SubconjuntoMapeamento> listaDeSubconjuntos;
@@ -32,15 +36,19 @@ public class SubconjuntoBean implements Serializable {
         this.subconjuntomape = new SubconjuntoMapeamento();
         this.subconjuntomodel = new SubconjuntoModel();
         this.listaDeSubconjuntos = new ArrayList<>();
+        this.maquinaMapeamento= new MaquinaMapeamento();
+        this.maquinaModel = new MaquinaModel();
     }
 
     public void salvar() {
+        maquinaMapeamento = this.maquinaModel.buscarPorId(maquinaMapeamento.getId());
+      subconjuntomape.setMaquina(maquinaMapeamento);
         try {
             subconjuntomodel.inserir(subconjuntomape);
             this.subconjuntomape = new SubconjuntoMapeamento();
-            // this.msg = "Salvo com Sucesso!";
+            this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {
-            //this.msg ="Erro"+e.getMessage();
+            this.msg = "Erro" + e.getMessage();
         }
     }
 

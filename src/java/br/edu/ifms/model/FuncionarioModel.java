@@ -14,19 +14,27 @@ import java.util.List;
  *
  * @author Danielly
  */
-public class FuncionarioModel extends Conexao{
-    
-    public void inserir(FuncionarioMapeamento funcionarioMapeamento){
+public class FuncionarioModel extends Conexao {
+
+    public void inserir(FuncionarioMapeamento funcionarioMapeamento) {
         super.inicializa();
         super.getSess().save(funcionarioMapeamento);
         super.executar();
     }
-    
-    public List<FuncionarioMapeamento> buscarTodos(){
-       List<FuncionarioMapeamento> listaDeFuncionarios = new ArrayList<>();
-       super.inicializa();
-       listaDeFuncionarios = super.getSess().createQuery("from FuncionarioMapeamento").list();
-       super.executar();
-       return listaDeFuncionarios;
+
+    public FuncionarioMapeamento buscarPorId(Long id) {
+        FuncionarioMapeamento funcionarioMapeamento;
+        super.inicializa();
+       funcionarioMapeamento = (FuncionarioMapeamento) super.getSess().get(FuncionarioMapeamento.class, id);
+        super.executar();
+        return funcionarioMapeamento;
+    }
+
+    public List<FuncionarioMapeamento> buscarTodos() {
+        List<FuncionarioMapeamento> listaDeFuncionarios = new ArrayList<>();
+        super.inicializa();
+        listaDeFuncionarios = super.getSess().createQuery("from FuncionarioMapeamento").list();
+        super.executar();
+        return listaDeFuncionarios;
     }
 }

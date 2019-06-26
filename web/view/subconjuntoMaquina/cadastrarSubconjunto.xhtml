@@ -4,7 +4,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/template.xhtml">
+                template="/template/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="corpo">
         <h1> Cadastro de Subconjunto</h1>
@@ -13,13 +14,12 @@
                 <label for="lblDescricao">Descrição</label>                
                 <h:inputText class="form-control" id="lblDescricao" value="#{subconjuntoBean.subconjuntomape.descricao}"/>
             </div>
-            <div class="form-group">
-                <label for="lblMaquinaId">Máquina Id</label>                
-                <h:inputText class="form-control" id="lblMaquinaId" value="#{subconjuntoBean.subconjuntomape.maquina}"/>
-            </div>
-             <div class="form-group">
-                <label for="lblMaquinaId">Peça Id</label>                
-                <h:inputText class="form-control" id="lblPecaId" value="#{subconjuntoBean.subconjuntomape.peca}"/>
+            <div class="form-group" onload="#{maquinaBean.buscarTodos()}">
+                <label for="maquinaId">Máquina</label>
+                <h:selectOneMenu class="form-control" id="maquinaId" value="#{subconjuntoBean.maquinaMapeamento.id}">
+                    <f:selectItems value="#{maquinaBean.listaDeMaquinas}" var="m"
+                                   itemLabel="#{m.descricao}" itemValue="#{m.id}" />
+                </h:selectOneMenu>
             </div>
             <h:commandButton class="btn btn-success" value="salvar" action= "#{subconjuntoBean.salvar()}"/>
         </h:form>
@@ -31,8 +31,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Descrição</th>
-                    <th scope="col">Máquina Id</th>
-                    <th scope="col">Peça Id</th>
+                    <th scope="col">Máquina</th>
                 </tr>   
             </thead>
             <tbody> 
@@ -40,8 +39,7 @@
                     <tr>
                         <td>#{subconjuntos.id}</td>
                         <td>#{subconjuntos.descricao}</td>
-                        <td>#{subconjuntos.maquina}</td>
-                        <td>#{subconjuntos.peca}</td>
+                        <td>#{subconjuntos.maquina.id}</td>
                     </tr>
                 </ui:repeat>
             </tbody>

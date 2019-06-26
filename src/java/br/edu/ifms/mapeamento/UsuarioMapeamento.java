@@ -9,7 +9,11 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.test.annotation.IfProfileValue;
 
 /**
@@ -18,12 +22,16 @@ import org.springframework.test.annotation.IfProfileValue;
  */
 @Entity
 @Table(name = "usuario")
-public class UsuarioMapeamento implements Serializable{
+public class UsuarioMapeamento implements Serializable {
+
     @Id
     @GeneratedValue
     private long id;
     private String login;
     private String senha;
+    @ManyToOne()
+    @JoinColumn(name = "idFuncionario", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
     private FuncionarioMapeamento funcionario;
 
     public String getLogin() {
@@ -57,6 +65,5 @@ public class UsuarioMapeamento implements Serializable{
     public void setFuncionario(FuncionarioMapeamento funcionario) {
         this.funcionario = funcionario;
     }
-    
-    
+
 }

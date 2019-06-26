@@ -16,6 +16,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import org.hibernate.annotations.FetchMode;
 
 
 /**
@@ -30,19 +32,11 @@ public class SubconjuntoMapeamento implements Serializable {
     @GeneratedValue
     private long id;
     private String descricao;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @ManyToOne()
+    @JoinColumn(name="idMaquina", insertable=true, updatable=true)
+    @Fetch(FetchMode.JOIN)
      private MaquinaMapeamento maquina;
-    List<PecaMapeamento> peca;
 
-    public List<PecaMapeamento> getPeca() {
-        return peca;
-    }
-
-    public void setPeca(List<PecaMapeamento> peca) {
-        this.peca = peca;
-    }
         public SubconjuntoMapeamento(long id, String descricao) {
         this.id = id;
         this.descricao = descricao;

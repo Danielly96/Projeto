@@ -19,6 +19,14 @@ public class ManutencaoModel extends Conexao{
         super.getSess().save(manutencaoMapeamento);
         super.executar();
     }
+      public ManutencaoMapeamento buscarPorId(Long id){
+        ManutencaoMapeamento manutencaoMapeamento;
+        super.inicializa();
+        manutencaoMapeamento = (ManutencaoMapeamento) super.getSess().get(ManutencaoMapeamento.class, id);
+        super.executar();
+        return manutencaoMapeamento;
+    }
+     
     public List<ManutencaoMapeamento> buscarTodos(){
        List<ManutencaoMapeamento> listaDeManutencoes = new ArrayList<>();
        super.inicializa();

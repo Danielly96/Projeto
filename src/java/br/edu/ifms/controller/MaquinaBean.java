@@ -5,15 +5,18 @@
  */
 package br.edu.ifms.controller;
 
+import br.edu.ifms.mapeamento.FabricanteMapeamento;
 import br.edu.ifms.mapeamento.MaquinaMapeamento;
+import br.edu.ifms.mapeamento.TipoMapeamento;
+import br.edu.ifms.model.FabricanteModel;
 import br.edu.ifms.model.MaquinaModel;
+import br.edu.ifms.model.TipoModel;
 import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 
 /**
  *
@@ -25,35 +28,44 @@ public class MaquinaBean implements Serializable {
 
     private MaquinaMapeamento maquinaMapeamento;
     private MaquinaModel maquinaModel;
+    private TipoMapeamento tmape;
+    private TipoModel tmodel;
+    private FabricanteMapeamento fmape;
+    private FabricanteModel fmodel;
     private String msg;
     private RetornoAcao retornoAcao;
     private List<MaquinaMapeamento> listaDeMaquinas;
 
     public MaquinaBean() {
         this.maquinaMapeamento = new MaquinaMapeamento();
-        try {
-              this.maquinaModel = new MaquinaModel();
-        } catch (Exception e) {
-            this.msg = e.getMessage();
-        }
+        this.maquinaModel = new MaquinaModel();
         this.listaDeMaquinas = new ArrayList<>();
-    
-    } 
+        this.tmape = new TipoMapeamento();
+        this.tmodel = new TipoModel();
+        this.fmape = new FabricanteMapeamento();
+        this.fmodel = new FabricanteModel();
+    }
 
     public void salvar() {
+        tmape = this.tmodel.buscarPorId(tmape.getId());
+        maquinaMapeamento.setTipo(tmape);
+        fmape = this.fmodel.buscarPorId(fmape.getId());
+        maquinaMapeamento.setFabricante(fmape);
+
         try {
             maquinaModel.inserir(maquinaMapeamento);
             this.maquinaMapeamento = new MaquinaMapeamento();
-            this.msg = "Salvo com sucesso!";
+            this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {
-            this.msg = "Erro " + e.getMessage();
+            this.msg = "Erro" + e.getMessage();
         }
     }
 
     public void buscarTodos() {
         this.listaDeMaquinas = maquinaModel.buscarTodos();
-                      
+
     }
+
     /*public void excluir(){
     this.listaDeMaquinas = mmodel.buscarTodos();
     this.mm = new MaquinaMapeamento();
@@ -68,7 +80,6 @@ public class MaquinaBean implements Serializable {
             this.msg = "Erro " + e.getMessage();
         }
     }*/
-
     public MaquinaMapeamento getMaquinaMapeamento() {
         return maquinaMapeamento;
     }

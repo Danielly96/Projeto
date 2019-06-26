@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table (name ="fabricante")
 public class FabricanteMapeamento implements Serializable{
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id; 
     private String nome;
     private String telefone;

@@ -5,8 +5,14 @@
  */
 package br.edu.ifms.controller;
 
+import br.edu.ifms.mapeamento.FuncionarioMapeamento;
 import br.edu.ifms.mapeamento.ManutencaoMapeamento;
+import br.edu.ifms.mapeamento.MaquinaMapeamento;
+import br.edu.ifms.mapeamento.PrioridadeMapeamento;
+import br.edu.ifms.model.FuncionarioModel;
 import br.edu.ifms.model.ManutencaoModel;
+import br.edu.ifms.model.MaquinaModel;
+import br.edu.ifms.model.PrioridadeModel;
 import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,28 +30,42 @@ public class ManutencaoBean implements Serializable {
 
     private ManutencaoMapeamento manutencaomape;
     private ManutencaoModel manutencaomodel;
+    private MaquinaMapeamento maquinaMapeamento;
+    private MaquinaModel maquinaModel;
+    private PrioridadeMapeamento prioridademape;
+    private PrioridadeModel prioridademodel;
+    private FuncionarioMapeamento fmape;
+    private FuncionarioModel fmodel;
     private String msg;
     private RetornoAcao retornoAcao;
     private List<ManutencaoMapeamento> listaDeManutencoes;
 
     public ManutencaoBean() {
         this.manutencaomape = new ManutencaoMapeamento();
-        try {
-            this.manutencaomodel = new ManutencaoModel();
-        } catch (Exception e) {
-            this.msg = e.getMessage();
-        }
+        this.manutencaomodel = new ManutencaoModel();
+        this.maquinaMapeamento = new MaquinaMapeamento();
+        this.maquinaModel = new MaquinaModel();
+        this.prioridademape = new PrioridadeMapeamento();
+        this.prioridademodel = new PrioridadeModel();
+        this.fmape = new FuncionarioMapeamento();
+        this.fmodel = new FuncionarioModel();
         this.listaDeManutencoes = new ArrayList<>();
-
     }
 
     public void salvar() {
+        maquinaMapeamento = this.maquinaModel.buscarPorId(maquinaMapeamento.getId());
+        manutencaomape.setMaquina(maquinaMapeamento);
+        prioridademape = this.prioridademodel.buscarPorId(prioridademape.getId());
+        manutencaomape.setPrioridade(prioridademape);
+        fmape = this.fmodel.buscarPorId(fmape.getId());
+        manutencaomape.setFuncionario(fmape);
+
         try {
-            manutencaomodel.inserir(manutencaomape);
-            this.manutencaomape = new ManutencaoMapeamento();
-            // this.msg = "Salvo com Sucesso!";
+            fmodel.inserir(fmape);
+            this.fmape = new FuncionarioMapeamento();
+            this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {
-            //this.msg ="Erro"+e.getMessage();
+            this.msg = "Erro" + e.getMessage();
         }
     }
 

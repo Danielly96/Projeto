@@ -20,6 +20,13 @@ public class PecaModel  extends Conexao{
         super.getSess().save(pecaMapeamento);
         super.executar();
     }
+       public PecaMapeamento buscarPorId(Long id){
+        PecaMapeamento pecaMapeamento;
+        super.inicializa();
+        pecaMapeamento = (PecaMapeamento) super.getSess().get(PecaMapeamento.class, id);
+        super.executar();
+        return pecaMapeamento;
+    }
     public List<PecaMapeamento> buscarTodos(){
        List<PecaMapeamento> listaDePecas = new ArrayList<>();
        super.inicializa();
