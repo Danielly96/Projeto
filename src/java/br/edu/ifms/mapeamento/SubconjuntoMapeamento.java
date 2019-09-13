@@ -17,8 +17,8 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import org.hibernate.annotations.FetchMode;
-
 
 /**
  *
@@ -32,20 +32,33 @@ public class SubconjuntoMapeamento implements Serializable {
     @GeneratedValue
     private long id;
     private String descricao;
-    @ManyToOne()
-    @JoinColumn(name="idMaquina", insertable=true, updatable=true)
-    @Fetch(FetchMode.JOIN)
-     private MaquinaMapeamento maquina;
 
-        public SubconjuntoMapeamento(long id, String descricao) {
+    @ManyToOne()
+    @JoinColumn(name = "idMaquina", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    private MaquinaMapeamento maquina;
+    @ManyToOne()
+    @JoinColumn(name = "idPeca", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    private PecaMapeamento peca;
+
+    public SubconjuntoMapeamento(long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
-  
+
     }
 
     public SubconjuntoMapeamento() {
     }
-   
+    
+    public PecaMapeamento getPeca() {
+        return peca;
+    }
+
+    public void setPeca(PecaMapeamento peca) {
+        this.peca = peca;
+    }
+
     public MaquinaMapeamento getMaquina() {
         return maquina;
     }
@@ -53,6 +66,7 @@ public class SubconjuntoMapeamento implements Serializable {
     public void setMaquina(MaquinaMapeamento maquina) {
         this.maquina = maquina;
     }
+
     public long getId() {
         return id;
     }

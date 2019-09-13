@@ -15,7 +15,7 @@ and open the template in the editor.
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list" >
-                            </span>Menu</a>
+                            </span>Menu de Buscas</a>
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
@@ -71,58 +71,41 @@ and open the template in the editor.
                 background-position: top center;
             }
         </style>
-        <table width="100%" border="1px">
-
+        <!--<br/><br/>
+       <h3>Maquinas já cadastradas</h3>
+        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{maquinaBean.buscarTodos()}">
             <thead>
                 <tr>
-                    <td>Id</td>
-                    <td>Descrição</td>
-                    <td>IdTipo</td>
-                    <td>Fabricante</td>
-                    <td>Tipo Mapeamento</td>
-                    <td>Manutenção</td>
-                    <td>Subconjunto</td>
-                </tr>
+                    <th scope="col">#</th>
+                    <th scope="col">descrição</th>
+                    <th scope="col">Tipo </th>
+                    <th scope="col">Fabricante </th>
+                </tr>   
             </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
+            <tbody> 
+                <ui:repeat value="#{maquinaBean.listaDeMaquinas}" var="maquinas">
+                    <tr>
+                        <td>#{maquinas.id}</td>
+                        <td>#{maquinas.descricao}</td>
+                        <td>#{maquinas.tipo.descricao}</td>
+                        <td>#{maquinas.fabricante.nome}</td>
+                    </tr>
+                </ui:repeat>
             </tbody>
         </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>-->
     </ui:define>
 </ui:composition>

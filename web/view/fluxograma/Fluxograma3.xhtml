@@ -7,6 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/template/template.xhtml">
 
     <ui:define name="menu">
@@ -62,14 +63,14 @@ and open the template in the editor.
 
             table {
                 border: 0px;
-                background-image: url(../resources/imagens/fluxogramaArea3.png);
+                background-image: url(../../resources/imagens/fluxogramaArea3.png);
                 background-size:115%;
                 width: 600px;
                 background-repeat: no-repeat;
                 background-position: top center;
             }
         </style>
-        <table style="">
+        <table >
 
             <thead>
                 <tr>
@@ -91,7 +92,7 @@ and open the template in the editor.
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><h:button outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Trator"/></td>
+                    <td><h:button class="btn btn-danger" outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Trator"/></td>
             <td></td>
             <td></td>
             <td></td>
@@ -104,7 +105,7 @@ and open the template in the editor.
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><h:button outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Esteira"/></td>
+                <td><h:button class="btn btn-danger" outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Esteira"/></td>
             <td></td>
             </tr>
             <tr>

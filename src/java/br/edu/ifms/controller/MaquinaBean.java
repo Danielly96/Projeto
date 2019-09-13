@@ -30,8 +30,6 @@ public class MaquinaBean implements Serializable {
     private MaquinaModel maquinaModel;
     private TipoMapeamento tmape;
     private TipoModel tmodel;
-    private FabricanteMapeamento fmape;
-    private FabricanteModel fmodel;
     private String msg;
     private RetornoAcao retornoAcao;
     private List<MaquinaMapeamento> listaDeMaquinas;
@@ -53,7 +51,7 @@ public class MaquinaBean implements Serializable {
         maquinaMapeamento.setFabricante(fmape);
 
         try {
-            maquinaModel.inserir(maquinaMapeamento);
+           maquinaModel.inserir(maquinaMapeamento);
             this.maquinaMapeamento = new MaquinaMapeamento();
             this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {
@@ -120,4 +118,38 @@ public class MaquinaBean implements Serializable {
         this.listaDeMaquinas = listaDeMaquinas;
     }
 
+
+    public TipoMapeamento getTmape() {
+        return tmape;
+    }
+
+    public void setTmape(TipoMapeamento tmape) {
+        this.tmape = tmape;
+    }
+
+    public TipoModel getTmodel() {
+        return tmodel;
+    }
+
+    public void setTmodel(TipoModel tmodel) {
+        this.tmodel = tmodel;
+    }
+
+    public FabricanteMapeamento getFmape() {
+        return fmape;
+    }
+
+    public void setFmape(FabricanteMapeamento fmape) {
+        this.fmape = fmape;
+    }
+
+    public FabricanteModel getFmodel() {
+        return fmodel;
+    }
+
+    public void setFmodel(FabricanteModel fmodel) {
+        this.fmodel = fmodel;
+    }
+    private FabricanteMapeamento fmape;
+    private FabricanteModel fmodel;
 }

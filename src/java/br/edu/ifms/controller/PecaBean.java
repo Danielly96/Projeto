@@ -25,9 +25,6 @@ public class PecaBean implements Serializable {
 
     private PecaMapeamento pecamape;
     private PecaModel pecamodel;
-    private SubconjuntoMapeamento subconjuntomape;
-    private SubconjuntoModel subconjuntomodel;
-    private String msg;
 
     private List<PecaMapeamento> listaDePecas;
 
@@ -35,20 +32,15 @@ public class PecaBean implements Serializable {
         this.pecamape = new PecaMapeamento();
         this.pecamodel = new PecaModel();
         this.listaDePecas = new ArrayList<>();
-        this.subconjuntomape = new SubconjuntoMapeamento();
-        this.subconjuntomodel = new SubconjuntoModel();
     }
 
     public void salvar() {
-         subconjuntomape = this.subconjuntomodel.buscarPorId(subconjuntomape.getId());
-       pecamape.setSubconjunto(subconjuntomape);
-                
         try {
            pecamodel.inserir(pecamape);
             this.pecamape = new PecaMapeamento();
-            this.msg = "Salvo com Sucesso!";
+            //this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {
-            this.msg = "Erro" + e.getMessage();
+            //this.msg = "Erro" + e.getMessage();
         }
     }
 
@@ -78,29 +70,5 @@ public class PecaBean implements Serializable {
 
     public void setListaDePecas(List<PecaMapeamento> listaDePecas) {
         this.listaDePecas = listaDePecas;
-    }
-    
-    public SubconjuntoMapeamento getSubconjuntomape() {
-        return subconjuntomape;
-    }
-
-    public void setSubconjuntomape(SubconjuntoMapeamento subconjuntomape) {
-        this.subconjuntomape = subconjuntomape;
-    }
-
-    public SubconjuntoModel getSubconjuntomodel() {
-        return subconjuntomodel;
-    }
-
-    public void setSubconjuntomodel(SubconjuntoModel subconjuntomodel) {
-        this.subconjuntomodel = subconjuntomodel;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 }

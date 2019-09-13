@@ -43,13 +43,13 @@ public class ManutencaoBean implements Serializable {
     public ManutencaoBean() {
         this.manutencaomape = new ManutencaoMapeamento();
         this.manutencaomodel = new ManutencaoModel();
+        this.listaDeManutencoes = new ArrayList<>();
         this.maquinaMapeamento = new MaquinaMapeamento();
         this.maquinaModel = new MaquinaModel();
         this.prioridademape = new PrioridadeMapeamento();
         this.prioridademodel = new PrioridadeModel();
         this.fmape = new FuncionarioMapeamento();
         this.fmodel = new FuncionarioModel();
-        this.listaDeManutencoes = new ArrayList<>();
     }
 
     public void salvar() {
@@ -61,8 +61,8 @@ public class ManutencaoBean implements Serializable {
         manutencaomape.setFuncionario(fmape);
 
         try {
-            fmodel.inserir(fmape);
-            this.fmape = new FuncionarioMapeamento();
+            manutencaomodel.inserir(manutencaomape);
+            this.manutencaomape = new ManutencaoMapeamento();
             this.msg = "Salvo com Sucesso!";
         } catch (Exception e) {
             this.msg = "Erro" + e.getMessage();
@@ -111,5 +111,53 @@ public class ManutencaoBean implements Serializable {
 
     public void setListaDeManutencoes(List<ManutencaoMapeamento> listaDeManutencoes) {
         this.listaDeManutencoes = listaDeManutencoes;
+    }
+
+    public MaquinaMapeamento getMaquinaMapeamento() {
+        return maquinaMapeamento;
+    }
+
+    public void setMaquinaMapeamento(MaquinaMapeamento maquinaMapeamento) {
+        this.maquinaMapeamento = maquinaMapeamento;
+    }
+
+    public MaquinaModel getMaquinaModel() {
+        return maquinaModel;
+    }
+
+    public void setMaquinaModel(MaquinaModel maquinaModel) {
+        this.maquinaModel = maquinaModel;
+    }
+
+    public PrioridadeMapeamento getPrioridademape() {
+        return prioridademape;
+    }
+
+    public void setPrioridademape(PrioridadeMapeamento prioridademape) {
+        this.prioridademape = prioridademape;
+    }
+
+    public PrioridadeModel getPrioridademodel() {
+        return prioridademodel;
+    }
+
+    public void setPrioridademodel(PrioridadeModel prioridademodel) {
+        this.prioridademodel = prioridademodel;
+    }
+
+    public FuncionarioMapeamento getFmape() {
+        return fmape;
+    }
+
+    public void setFmape(FuncionarioMapeamento fmape) {
+        this.fmape = fmape;
+    }
+
+    public FuncionarioModel getFmodel() {
+        return fmodel;
+    }
+
+    public void setFmodel(FuncionarioModel fmodel) {
+        this.fmodel = fmodel;
     }
 }

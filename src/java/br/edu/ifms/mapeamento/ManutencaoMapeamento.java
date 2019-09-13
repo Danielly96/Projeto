@@ -14,8 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
@@ -26,78 +28,35 @@ import org.hibernate.annotations.FetchMode;
  * @author Danielly
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "manutencao")
 public class ManutencaoMapeamento implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
-    @ManyToOne
-    private MaquinaMapeamento maquinaId;
-    @ManyToOne
-    private PrioridadeMapeamento prioridadeId;
-    @ManyToOne
-    private FuncionarioMapeamento funcionarioQueIdentificouId;
-    @ManyToOne
-    private FuncionarioMapeamento funcionario;
-    private FuncionarioMapeamento funcionarioQueFezManutencaoId;
+    private String funcionarioQueIdentificou;
+    private String funcionarioqueFezManutencao;
     private String descricaoDoProblema;
     private String descricaoDaSolucao;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataQueIdentificou;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataManutencaoMarcada;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataManutencaoRealizada;
     private boolean emManutencao;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
+    @JoinColumn(name = "idMaquina", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
     private MaquinaMapeamento maquina;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "idPrioridade", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
     private PrioridadeMapeamento prioridade;
-    
-    public ManutencaoMapeamento(long id, MaquinaMapeamento maquinaId, PrioridadeMapeamento prioridadeId, FuncionarioMapeamento funcionarioQueIdentificouId, FuncionarioMapeamento funcionarioQueFezManutencaoId, String descricaoDoProblema, String descricaoDaSolucao, Date dataQueIdentificou, Date dataManutencaoMarcada, Date dataManutencaoRealizada, boolean emManutencao) {
-        this.id = id;
-        this.maquinaId = maquinaId;
-        this.prioridadeId = prioridadeId;
-        this.funcionarioQueIdentificouId = funcionarioQueIdentificouId;
-        this.funcionarioQueFezManutencaoId = funcionarioQueFezManutencaoId;
-        this.descricaoDoProblema = descricaoDoProblema;
-        this.descricaoDaSolucao = descricaoDaSolucao;
-        this.dataQueIdentificou = dataQueIdentificou;
-        this.dataManutencaoMarcada = dataManutencaoMarcada;
-        this.dataManutencaoRealizada = dataManutencaoRealizada;
-        this.emManutencao = emManutencao;
-    }
-
-    public FuncionarioMapeamento getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(FuncionarioMapeamento funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public MaquinaMapeamento getMaquina() {
-        return maquina;
-    }
-
-    public void setMaquina(MaquinaMapeamento maquina) {
-        this.maquina = maquina;
-    }
-
-    public PrioridadeMapeamento getPrioridade() {
-        return prioridade;
-    }
-
-    public void setPrioridade(PrioridadeMapeamento prioridade) {
-        this.prioridade = prioridade;
-    }
-
-    
-    public ManutencaoMapeamento() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "idFuncionario", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    private FuncionarioMapeamento funcionario;
 
     public long getId() {
         return id;
@@ -107,38 +66,22 @@ public class ManutencaoMapeamento implements Serializable {
         this.id = id;
     }
 
-    public MaquinaMapeamento getMaquinaId() {
-        return maquinaId;
+    public String getFuncionarioQueIdentificou() {
+        return funcionarioQueIdentificou;
     }
 
-    public void setMaquinaId(MaquinaMapeamento maquinaId) {
-        this.maquinaId = maquinaId;
+    public void setFuncionarioQueIdentificou(String funcionarioQueIdentificou) {
+        this.funcionarioQueIdentificou = funcionarioQueIdentificou;
     }
 
-    public PrioridadeMapeamento getPrioridadeId() {
-        return prioridadeId;
+    public String getFuncionarioqueFezManutencao() {
+        return funcionarioqueFezManutencao;
     }
 
-    public void setPrioridadeId(PrioridadeMapeamento prioridadeId) {
-        this.prioridadeId = prioridadeId;
+    public void setFuncionarioqueFezManutencao(String funcionarioqueFezManutencao) {
+        this.funcionarioqueFezManutencao = funcionarioqueFezManutencao;
     }
 
-    public FuncionarioMapeamento getFuncionarioQueIdentificouId() {
-        return funcionarioQueIdentificouId;
-    }
-
-    public void setFuncionarioQueIdentificouId(FuncionarioMapeamento funcionarioQueIdentificouId) {
-        this.funcionarioQueIdentificouId = funcionarioQueIdentificouId;
-    }
-
-    public FuncionarioMapeamento getFuncionarioQueFezManutencaoId() {
-        return funcionarioQueFezManutencaoId;
-    }
-
-    public void setFuncionarioQueFezManutencaoId(FuncionarioMapeamento funcionarioQueFezManutencaoId) {
-        this.funcionarioQueFezManutencaoId = funcionarioQueFezManutencaoId;
-    }
-    
     public String getDescricaoDoProblema() {
         return descricaoDoProblema;
     }
@@ -185,5 +128,29 @@ public class ManutencaoMapeamento implements Serializable {
 
     public void setEmManutencao(boolean emManutencao) {
         this.emManutencao = emManutencao;
-    }  
+    }
+
+    public MaquinaMapeamento getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(MaquinaMapeamento maquina) {
+        this.maquina = maquina;
+    }
+
+    public PrioridadeMapeamento getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(PrioridadeMapeamento prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public FuncionarioMapeamento getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(FuncionarioMapeamento funcionario) {
+        this.funcionario = funcionario;
+    }
 }

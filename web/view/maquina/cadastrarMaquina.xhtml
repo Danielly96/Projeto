@@ -18,7 +18,7 @@
                 <label for="tipoId">Tipo</label>
                 <h:selectOneMenu class="form-control" id="tipoId" value="#{maquinaBean.tmape.id}">
                     <f:selectItems value="#{tipoBean.listaDeTipos}" var="t"
-                                   itemLabel="#{t.descricao}" itemValue="#{c.id}" />
+                                   itemLabel="#{t.descricao}" itemValue="#{t.id}" />
                 </h:selectOneMenu>
             </div>
             <div class="form-group" onload="#{fabricanteBean.buscarTodos()}">

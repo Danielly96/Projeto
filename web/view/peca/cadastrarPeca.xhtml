@@ -14,13 +14,7 @@
                 <label for="lblDescricao">Descrição</label>                
                 <h:inputText class="form-control" id="lblNome" value="#{pecaBean.pecamape.descricao}"/>
             </div>
-            <div class="form-group" onload="#{subconjuntoBean.buscarTodos()}">
-                <label for="subId">Subconjunto</label>
-                <h:selectOneMenu class="form-control" id="subId" value="#{pecaBean.subconjuntoMapeamento.id}">
-                    <f:selectItems value="#{pecaBean.listaDePecas}" var="p"
-                                   itemLabel="#{p.descricao}" itemValue="#{p.id}" />
-                </h:selectOneMenu>
-            </div>
+            
             <h:commandButton class="btn btn-success" value="salvar" action= "#{pecaBean.salvar()}"/>
         </h:form>
 
@@ -31,7 +25,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Descrição</th>
-                    <th scope="col">Subconjunto</th>
                 </tr>   
             </thead>
             <tbody> 
@@ -39,7 +32,6 @@
                     <tr>
                         <td>#{pecas.id}</td>
                         <td>#{pecas.descricao}</td>
-                        <td>#{pecas.subconjunto.descricao}</td>
                     </tr>
                 </ui:repeat>
             </tbody>

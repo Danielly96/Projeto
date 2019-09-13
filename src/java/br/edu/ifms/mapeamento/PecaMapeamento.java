@@ -25,14 +25,14 @@ import org.hibernate.annotations.FetchMode;
 public class PecaMapeamento implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
     private String descricao;
 
-    @ManyToOne()
+   /* @ManyToOne()
     @JoinColumn(name = "idSubconjunto", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
-    private SubconjuntoMapeamento subconjunto;
+    private SubconjuntoMapeamento subconjunto;*/
 
     public PecaMapeamento(long id, String descricao) {
         this.id = id;
@@ -56,13 +56,5 @@ public class PecaMapeamento implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-     public SubconjuntoMapeamento getSubconjunto() {
-        return subconjunto;
-    }
-
-    public void setSubconjunto(SubconjuntoMapeamento subconjunto) {
-        this.subconjunto = subconjunto;
     }
 }

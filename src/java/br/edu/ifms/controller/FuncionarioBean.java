@@ -41,7 +41,14 @@ public class FuncionarioBean implements Serializable {
     public void salvar() {
         funcaoMapeamento = this.funcaoModel.buscarPorId(funcaoMapeamento.getId());
         fmape.setFuncao(funcaoMapeamento);
-                
+              
+       /* Transaction tx=session.beginTransaction();
+		try{
+			session.save(entity);
+			tx.commit();
+		}catch(Exception e){
+			tx.rollback();
+		}*/
         try {
             fmodel.inserir(fmape);
             this.fmape = new FuncionarioMapeamento();

@@ -33,6 +33,7 @@
         <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{funcionarioBean.buscarTodos()}">
             <thead>
                 <tr>
+                    <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Matricula</th>
                     <th scope="col">Função</th>
@@ -41,9 +42,10 @@
             <tbody> 
                 <ui:repeat value="#{funcionarioBean.listaDeFuncionarios}" var="funcionarios">
                     <tr>
+                        <td>#{funcionarios.id}</td>
                         <td>#{funcionarios.nome}</td>
                         <td>#{funcionarios.matricula}</td>
-                        <td>#{funcionarios.funcao.descricao}</td>>
+                        <td>#{funcionarios.funcao.descricao}</td>
                     </tr>
                 </ui:repeat>
             </tbody>
