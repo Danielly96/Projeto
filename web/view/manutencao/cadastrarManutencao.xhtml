@@ -5,112 +5,132 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="corpo">
-        <h1> Cadastro de Manutencao</h1>
+        <h1>Manutenção</h1>
+        <hr/>
+        <div class="field">
+            <h3>Manutenções em andamento</h3>
+            <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{manutencaoBean.buscarTodos()}">
+                <thead>
+                    <tr>
+                        <th scope="col">Máquina</th>
+                        <th scope="col">Prioridade</th>
+                        <th scope="col">Detectado</th>
+                        <th scope="col">Identificado por</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                    </tr>   
+                </thead>
+                <tbody> 
+                    <ui:repeat value="#{manutencaoBean.listaDeManutencoes}" var="manutencoes">
+                        <tr>
+                            <td>#{manutencoes.maquina.descricao}</td>
+                            <td>#{manutencoes.prioridade.descricao}</td>
+                            <td><h:outputText value="#{manutencoes.dataQueIdentificou}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </h:outputText></td>
+                            <td>#{manutencoes.funcionarioQueIdentificou}</td>
+                            <td>
+                                <!--a class="openMyModal product-title" data-id='{"nome": "@Model.Mensagens[i].Cliente.Nome", "pessoaId": @Model.Mensagens[i].Cliente.PessoaId, "mensagemId": @Model.Mensagens[i].MensagemId, "conteudo": "@Model.Mensagens[i].Conteudo"}' data-toggle="modal" href="#myModal"></a-->
+                                <button class="openMyModal btn btn-primary" data-id='{"problema": "#{manutencoes.descricaoDoProblema}"}' data-toggle="modal" data-target="#modal-descricaoProblema" id="btn-descricaoProblema">Descrição</button>
+                                <!--button type="submit" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Descrição</button-->
+                            </td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-info" value="Finalizar" action= "#{manutencaoBean.editar(manutencoes.id)}"/>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{manutencaoBean.excluir(manutencoes.id)}"/>
+                                </h:form>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+        </div>
+        <hr/>
+
+        <!-- - - - - - - - - - - - - -  MODAL  - - - - - - -  - - - -->
+        <div class="modal fade" id="modal-descricaoProblema">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                        <h4 class="modal-title">Descrição do problema</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="paDescricaoProblema">Conteúdo da mensagem</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- - - - - - - - - - - - - -  - - - -  - - - - - - -  - - - -->
+
         <h:form>
-            <div>
-                <label for="lblFuncionarioIdentificouId">Funcionario Que Identificou:</label>                
-                <h:inputText class="form-control" id="lblFuncionarioIdentificouId" value="#{manutencaoBean.manutencaomape.funcionarioQueIdentificou}"/>
+            <h3>Cadastrar nova Manutenção</h3>
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-12" onload="#{maquinaBean.buscarTodos()}">
+                    <label for="maquinaId">Máquina que apresentou defeito</label>
+                    <h:selectOneMenu class="form-control" id="maquinaId" value="#{manutencaoBean.maquinaMapeamento.id}">
+                        <f:selectItem itemLabel="-- Selecione --" itemValue="0"/> 
+                        <f:selectItems value="#{maquinaBean.listaDeMaquinas}" var="m"
+                                       itemLabel="#{m.descricao}" itemValue="#{m.id}" />
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group col-md-3 col-sm-12" onload="#{prioridadeBean.buscarTodos()}">
+                    <label for="prioridadeId">Prioridade</label>
+                    <h:selectOneMenu class="form-control" id="prioridadeId" value="#{manutencaoBean.prioridademape.id}">
+                        <f:selectItem itemLabel="-- Selecione --" itemValue="0"/> 
+                        <f:selectItems value="#{prioridadeBean.listaDePrioridades}" var="p"
+                                       itemLabel="#{p.descricao}" itemValue="#{p.id}" />
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group col-md-3 col-sm-12">
+                    <label for="lblDataIdentificou">Identificado em</label>    
+                    <!--h:inputText id="lblDataIdentificou" value="#{manutencaoBean.manutencaomape.dataQueIdentificou}" class="datepicker form-control" /-->
+                    <p:calendar required="true" id="lblDataIdentificou" value="#{manutencaoBean.manutencaomape.dataQueIdentificou}" pattern="dd/MM/yyyy" mask="true" locale="pt"></p:calendar>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="lblFuncionarioManutencao">Funcionario Que Fez a Manutenção:</label>                
-                <h:inputText class="form-control" id="lblFuncionarioManutencao" value="#{manutencaoBean.manutencaomape.funcionarioqueFezManutencao}"/>
-            </div>
-            <div class="form-group">
-                <label for="lblDescricaoProblema">Descrição do Problema:</label>                
-                <h:inputText class="form-control" id="lblDescricaoProblema" value="#{manutencaoBean.manutencaomape.descricaoDoProblema}"/>
-            </div>
-            <div class="form-group">
-                <label for="lblDescricaoSolucao">Descrição da Solução:</label>                
-                <h:inputText class="form-control" id="lblDescricaoSolucao" value="#{manutencaoBean.manutencaomape.descricaoDaSolucao}"/>
-            </div>
-            <!--<div class="form-group">
-                <label for="lblDataIdentificou">Data que identificou:</label> 
-                <h:inputText class="form-control" id="lblDataIdentificou" value="#{manutencaoBean.manutencaomape.dataQueIdentificou}"> <f:convertDateTime pattern="dd-mm-yyyy" /> </h:inputText> 
-            </div>!-->          
-            <div class="form-group">
-                <label for="lblDataIdentificou">Data que identificou:</label>                
-                <h:inputText class="form-control" id="lblDataIdentificou" value="#{manutencaoBean.manutencaomape.dataQueIdentificou}"/>
-            </div>
-            <div class="form-group">
-                <label for="lblDataMarcada">Data Marcada:</label>                
-                <h:inputText class="form-control" id="lblDataMarcada" value="#{manutencaoBean.manutencaomape.dataManutencaoMarcada}"/>
-            </div>
-            <div class="form-group">
-                <label for="lblDataRealizada">Data Realizada:</label>                
-                <h:inputText class="form-control" id="lblDataRealizada" value="#{manutencaoBean.manutencaomape.dataManutencaoRealizada}"/>
-            </div>
-            <div class="form-group">
-                <label for="lblEmManutencao">Em Manutenção</label>                
-                <h:inputText class="form-control" id="lblEmManutencao" value="#{manutencaoBean.manutencaomape.emManutencao}"/>
-            </div>
-            <div class="form-group" onload="#{maquinaBean.buscarTodos()}">
-                <label for="maquinaId">Máquina</label>
-                <h:selectOneMenu class="form-control" id="maquinaId" value="#{manutencaoBean.maquinaMapeamento.id}">
-                    <f:selectItems value="#{maquinaBean.listaDeMaquinas}" var="m"
-                                   itemLabel="#{m.descricao}" itemValue="#{m.id}" />
-                </h:selectOneMenu>
-            </div>
-            <div class="form-group" onload="#{prioridadeBean.buscarTodos()}">
-                <label for="prioridadeId">Prioridade</label>
-                <h:selectOneMenu class="form-control" id="prioridadeId" value="#{manutencaoBean.prioridademape.id}">
-                    <f:selectItems value="#{prioridadeBean.listaDePrioridades}" var="p"
-                                   itemLabel="#{p.descricao}" itemValue="#{p.id}" />
-                </h:selectOneMenu>
-            </div>
-            <div class="form-group" onload="#{funcionarioBean.buscarTodos()}">
-                <label for="funcionarioId">Funcionário</label>
-                <h:selectOneMenu class="form-control" id="funcionarioId" value="#{manutencaoBean.fmape.id}">
-                    <f:selectItems value="#{funcionarioBean.listaDeFuncionarios}" var="f"
-                                   itemLabel="#{f.nome}" itemValue="#{f.id}" />
-                </h:selectOneMenu>
-            </div>
+            <div class="row">                
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="lblFuncionarioIdentificouId">Funcionário Que Identificou o problema</label>                
+                    <h:inputText required="true" class="form-control" id="lblFuncionarioIdentificouId" value="#{manutencaoBean.manutencaomape.funcionarioQueIdentificou}"/>
+                </div>
+            </div>   
+            <div class="row">                
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="lbldescricaoDoProblema">Descrição do problema</label>                
+                    <h:inputTextarea required="true" class="form-control" id="lbldescricaoDoProblema" value="#{manutencaoBean.manutencaomape.descricaoDoProblema}"/>
+                </div>
+            </div>   
+
             <h:commandButton class="btn btn-success" value="salvar" action= "#{manutencaoBean.salvar()}"/>
         </h:form>
 
-        <br/><br/>
-        <h3>Manutenções já cadastradas</h3>
-        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{manutencaoBean.buscarTodos()}">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Máquina</th>
-                    <th scope="col">Prioridade</th>
-                    <th scope="col">Funcionário </th>
-                    <th scope="col">Funcionário que Identificou </th>
-                    <th scope="col">Funcionário Manutenção </th>
-                    <th scope="col">Descrição do problema </th>
-                    <th scope="col">Data que Identificou </th>
-                    <th scope="col">Data Marcada </th>
-                    <th scope="col">Data Realizada</th>
-                    <th scope="col">Data Manutenção </th>
-                </tr>   
-            </thead>
-            <tbody> 
-                <ui:repeat value="#{manutencaoBean.listaDeManutencoes}" var="manutenções">
-                    <tr>
-                        <td>#{manutenções.id}</td>                        
-                        <td>#{manutenções.funcionarioQueIdentificou}</td>
-                        <td>#{manutenções.funcionarioqueFezManutencao}</td>
-                        <td>#{manutenções.descricaoDoProblema}</td>
-                        <td>#{manutenções.descricaoDaSolucao}</td>
-                        <td>#{manutenções.dataQueIdentificou}</td>
-                        <td>#{manutenções.dataManutencaoMarcada}</td>
-                        <td>#{manutenções.dataManutencaoRealizada}</td>
-                        <td>#{manutenções.emManutencao}</td>
-                        <td>#{manutenções.maquina.id}</td>
-                        <td>#{manutenções.prioridade.id}</td>
-                        <td>#{manutenções.funcionario.nome}</td>
-                    </tr>
-                </ui:repeat>
-            </tbody>
-        </table>
-
         <script>
+            $(document).on("click", ".openMyModal", function () {                
+                var data = $(this).data('id');
+                $("#paDescricaoProblema").text(data.problema);
+            });
+
             $(document).ready(function () {
+                $("#btn-descricaoProblema").click(function () {
+                    $("#modal-descricaoProblema").modal();
+                });
+
+                $('.datepicker').datepicker({
+                    format: 'dd/mm/yyyy',
+                    language: 'pt-BR'
+                });
+
                 $('#minhaTabela').DataTable({
                     "language": {
                         "lengthMenu": "Mostrando _MENU_ registros por página",

@@ -14,12 +14,13 @@ import java.util.List;
  * @author Danielly
  */
 public class ManutencaoModel extends Conexao{
+    
      public void inserir(ManutencaoMapeamento manutencaoMapeamento){
         super.inicializa();
         super.getSess().save(manutencaoMapeamento);
         super.executar();
     }
-      public ManutencaoMapeamento buscarPorId(Long id){
+    public ManutencaoMapeamento buscarPorId(Long id){
         ManutencaoMapeamento manutencaoMapeamento;
         super.inicializa();
         manutencaoMapeamento = (ManutencaoMapeamento) super.getSess().get(ManutencaoMapeamento.class, id);
@@ -33,5 +34,11 @@ public class ManutencaoModel extends Conexao{
        listaDeManutencoes = super.getSess().createQuery("from ManutencaoMapeamento").list();
        super.executar();
        return listaDeManutencoes;
+    }
+    
+    public void excluir(ManutencaoMapeamento manutencao){
+        super.inicializa();
+        super.getSess().delete(manutencao);
+        super.executar();
     }
 }

@@ -13,10 +13,15 @@ and open the template in the editor.
         <title>Sistema de Informações de Máquinas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
-        <h:outputScript name="bootstrap-3.3.7-dist/js/jquery.min.js"/>
+
+        <h:outputScript name="primefaces/locale-primefaces.js"/>
+        <h:outputScript library="primefaces" name="locale-primefaces.js" />
+        <!--h:outputScript name="bootstrap-3.3.7-dist/js/jquery.min.js"/-->
+        <h:outputScript library="primefaces" name="jquery/jquery.js"/>
         <h:outputScript name="bootstrap-3.3.7-dist/js/bootstrap.min.js"/>
         <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
         <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"/>
+
     </h:head>
 
     <h:body>
@@ -131,7 +136,12 @@ and open the template in the editor.
                                                 <table class="table">
                                                     <tr>
                                                         <td>
-                                                            <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/cadastrarManutencao" value="Manter"/>
+                                                            <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/cadastrarManutencao" value="Em aberto / Nova"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/cadastrarManutencao" value="Finalizadas"/>
                                                         </td>
                                                     </tr>
                                                 </table>

@@ -16,16 +16,17 @@ import br.edu.ifms.model.PrioridadeModel;
 import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Danielly
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ManutencaoBean implements Serializable {
 
     private ManutencaoMapeamento manutencaomape;
@@ -50,6 +51,23 @@ public class ManutencaoBean implements Serializable {
         this.prioridademodel = new PrioridadeModel();
         this.fmape = new FuncionarioMapeamento();
         this.fmodel = new FuncionarioModel();
+        this.msg = "";
+        this.retornoAcao = new RetornoAcao();
+        this.listaDeManutencoes = new ArrayList<>();
+    }
+
+    public void inicializa() {
+        this.manutencaomape = null;
+        this.maquinaMapeamento = null;
+        this.prioridademape = null;
+        this.fmape = null;
+        this.retornoAcao = null;
+        this.manutencaomape = new ManutencaoMapeamento();
+        this.maquinaMapeamento = new MaquinaMapeamento();
+        this.prioridademape = new PrioridadeMapeamento();
+        this.fmape = new FuncionarioMapeamento();
+        this.msg = "";
+        this.retornoAcao = new RetornoAcao();
     }
 
     public void salvar() {
@@ -60,6 +78,13 @@ public class ManutencaoBean implements Serializable {
         fmape = this.fmodel.buscarPorId(fmape.getId());
         manutencaomape.setFuncionario(fmape);
 
+        //a partir da data de identificação somar os dias para a previsão de manutenção      
+        Calendar c = Calendar.getInstance();
+        c.setTime(manutencaomape.getDataQueIdentificou());
+        c.add(Calendar.DATE, Integer.parseInt(prioridademape.getQntdias()));
+        manutencaomape.setDataManutencaoMarcada(c.getTime());
+        //setando que está em manutenção
+        manutencaomape.setEmManutencao(true);
         try {
             manutencaomodel.inserir(manutencaomape);
             this.manutencaomape = new ManutencaoMapeamento();
@@ -70,7 +95,31 @@ public class ManutencaoBean implements Serializable {
     }
 
     public void buscarTodos() {
+        inicializa();
         this.listaDeManutencoes = manutencaomodel.buscarTodos();
+    }
+
+    public String editar(Long manutencaoID) {
+        this.manutencaomape = manutencaomodel.buscarPorId(manutencaoID);
+
+        return "editarManutencao.xhtml?faces-redirect=true";
+    }
+    
+    public String salvarEdicao() {               
+        manutencaomape.setEmManutencao(false);
+        try {
+            manutencaomodel.inserir(manutencaomape);
+            this.manutencaomape = new ManutencaoMapeamento();
+            this.msg = "Salvo com Sucesso!";
+        } catch (Exception e) {
+            this.msg = "Erro" + e.getMessage();
+        }
+        
+        return "cadastrarManutencao.xhtml?faces-redirect=true";
+    }
+    
+     public void excluir(Long manutencaoID) {
+        this.manutencaomodel.excluir(manutencaomodel.buscarPorId(manutencaoID));        
     }
 
     public ManutencaoMapeamento getManutencaomape() {
