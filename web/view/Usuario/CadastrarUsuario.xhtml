@@ -10,10 +10,40 @@ and open the template in the editor.
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/template.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="cabecalho">
+        <header>
+            <ul class="nav nav-tabs">
 
+                <h:graphicImage library="imagens" name="logo.png" style="width:5%"/>                                       
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Projeto/faces/view/home.xhtml">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Projeto/faces/view/areas.xhtml">Áreas</a>
+                </li>
+                <li class="navbar-right">
+                    <a class="glyphicon glyphicon-log-in" href="/Projeto/faces/view/Usuario/Login.xhtml">&#160;Login</a>
+                </li>
+            </ul>
+        </header>
+    </ui:define>
     <ui:define name="corpo">
+        <style type="text/css">
+            .novo {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 100%;
+                height: 40%;
+                float: none;
+            }
+            .msg{
+                font-size: 200%;
+                color: blue;
+            }
+        </style>
         <h1> Cadastro de Usuarios</h1>
-        <h:form>
+        <h:form class="novo">
             <div class="form-group">
                 <label for="lblLogin">Login</label>                
                 <h:inputText class="form-control" id="lblLogin" value="#{usuarioBean.usuariomape.login}"/>
@@ -23,13 +53,14 @@ and open the template in the editor.
                 <h:inputText class="form-control" id="lblSenha" value="#{usuarioBean.usuariomape.senha}"/>
             </div>
             <div class="form-group" onload="#{usuarioBean.buscarTodos()}">
-                <label for="planoId">Funcionario</label>
-                <h:selectOneMenu class="form-control" id="planoId" value="#{usuarioBean.fmape.id}">
-                    <f:selectItems value="#{funcionarioBean.listaDeFuncionarios}" var="f"
-                                   itemLabel="#{f.nome}" itemValue="#{f.id}" />
+                <label for="funcId">Funcionario</label>
+                <h:selectOneMenu class="form-control" id="funcId" value="#{usuarioBean.fmape.id}">
+                    <f:selectItems value="#{funcionarioBean.listaDeFuncionarios}" var="u"
+                                   itemLabel="#{u.nome}" itemValue="#{u.id}" />
                 </h:selectOneMenu>
             </div>
             <h:commandButton class="btn btn-success" value="salvar" action= "#{usuarioBean.salvar()}"/>
+            <h:messages class="msg" />
         </h:form>
     </ui:define>
 </ui:composition>

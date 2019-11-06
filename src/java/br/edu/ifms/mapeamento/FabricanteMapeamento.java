@@ -16,7 +16,6 @@ import javax.persistence.Table;
  * @author Danielly
  */
 @Entity
-//@PrimaryKeyJoinColumn(name="idFrabricanteMapeamento")
 @Table (name ="fabricante")
 public class FabricanteMapeamento implements Serializable{
     @Id
@@ -25,19 +24,7 @@ public class FabricanteMapeamento implements Serializable{
     private String nome;
     private String telefone;
     private String email;
-    //@OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
-    //@Cascade(CascadeType.ALL)
-    //private Collection maquina;
 
-    public FabricanteMapeamento(long id, String nome, String telefone, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-    }
-    public FabricanteMapeamento() {
-  
-    }
 
     public long getId() {
         return id;

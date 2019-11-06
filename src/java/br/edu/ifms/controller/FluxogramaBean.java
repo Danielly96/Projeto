@@ -29,7 +29,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class ManutencaoBean implements Serializable {
+public class FluxogramaBean implements Serializable {
 
     private ManutencaoMapeamento manutencaomape;
     private ManutencaoModel manutencaomodel;
@@ -43,7 +43,7 @@ public class ManutencaoBean implements Serializable {
     private RetornoAcao retornoAcao;
     private List<ManutencaoMapeamento> listaDeManutencoes;
 
-    public ManutencaoBean() {
+    public FluxogramaBean() {
         this.manutencaomape = new ManutencaoMapeamento();
         this.manutencaomodel = new ManutencaoModel();
         this.listaDeManutencoes = new ArrayList<>();
@@ -90,7 +90,7 @@ public class ManutencaoBean implements Serializable {
         try {
             manutencaomodel.inserir(manutencaomape);
             this.manutencaomape = new ManutencaoMapeamento();
-            FacesContext.getCurrentInstance().addMessage(
+          FacesContext.getCurrentInstance().addMessage(
                     null, new FacesMessage("Salvo com sucesso!"));
 
             FacesContext.getCurrentInstance()
@@ -104,24 +104,23 @@ public class ManutencaoBean implements Serializable {
     public void buscarTodosEmManutencao() {
         inicializa();
         this.listaDeManutencoes = manutencaomodel.buscarTodosEmManutencao();
-
-        // manutencaomape.setEmManutencao(true);
+        
+       // manutencaomape.setEmManutencao(true);
     }
 
-    public void buscarTodosFinalizados() {
-        inicializa();
-        this.listaDeManutencoes = manutencaomodel.buscarTodosFinalizados();
+    public String chamadaDoFluxograma(Long id){
+         this.maquinaMapeamento = maquinaModel.buscarPorId(id);
 
-        // manutencaomape.setEmManutencao(true);
+        return "maquinaSelecionada.xhtml?faces-redirect=true";
     }
-
+    
     public String editar(Long manutencaoID) {
         this.manutencaomape = manutencaomodel.buscarPorId(manutencaoID);
 
         return "editarManutencao.xhtml?faces-redirect=true";
     }
-
-    public String salvarEdicao() {
+    
+    public String salvarEdicao() {               
         fmape = this.fmodel.buscarPorId(fmape.getId());
         manutencaomape.setFuncionario(fmape);
 
@@ -134,7 +133,7 @@ public class ManutencaoBean implements Serializable {
         manutencaomape.setEmManutencao(false);
         try {
             manutencaomodel.update(manutencaomape);
-            FacesContext.getCurrentInstance().addMessage(
+           FacesContext.getCurrentInstance().addMessage(
                     null, new FacesMessage("Salvo com sucesso!"));
 
             FacesContext.getCurrentInstance()
@@ -143,12 +142,12 @@ public class ManutencaoBean implements Serializable {
         } catch (Exception e) {
             this.msg = "Erro" + e.getMessage();
         }
-
+        
         return "finalizadas.xhtml?faces-redirect=true";
     }
-
-    public void excluir(Long manutencaoID) {
-        this.manutencaomodel.excluir(manutencaomodel.buscarPorId(manutencaoID));
+    
+     public void excluir(Long manutencaoID) {
+        this.manutencaomodel.excluir(manutencaomodel.buscarPorId(manutencaoID));        
     }
 
     public ManutencaoMapeamento getManutencaomape() {

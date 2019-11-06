@@ -27,6 +27,7 @@ public class MaquinaMapeamento implements Serializable {
     @GeneratedValue
     private long id;
     private String descricao;
+    private String caminhoImagem;
 
     @ManyToOne()
     @JoinColumn(name = "idFabricante", insertable = true, updatable = true)
@@ -38,26 +39,14 @@ public class MaquinaMapeamento implements Serializable {
     @Fetch(FetchMode.JOIN)
     private TipoMapeamento tipo;
 
-    /*private List<ManutencaoMapeamento> manutencao;
-    // OneToMany(mappedBy="maquina", fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    private List<SubconjuntoMapeamento> subconjunto;
-
-    public List<ManutencaoMapeamento> getManutencao() {
-        return manutencao;
+    public String getCaminhoImagem() {
+        return caminhoImagem;
     }
 
-    public void setManutencao(List<ManutencaoMapeamento> manutencao) {
-        this.manutencao = manutencao;
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
     }
 
-    public List<SubconjuntoMapeamento> getSubconjunto() {
-        return subconjunto;
-    }
-
-    public void setSubconjunto(List<SubconjuntoMapeamento> subconjunto) {
-        this.subconjunto = subconjunto;
-    }*/
     public long getId() {
         return id;
     }
@@ -81,7 +70,6 @@ public class MaquinaMapeamento implements Serializable {
     public void setFabricante(FabricanteMapeamento fabricante) {
         this.fabricante = fabricante;
     }
-    
 
     public TipoMapeamento getTipo() {
         return tipo;
@@ -90,4 +78,5 @@ public class MaquinaMapeamento implements Serializable {
     public void setTipo(TipoMapeamento tipo) {
         this.tipo = tipo;
     }
+
 }

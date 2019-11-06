@@ -8,18 +8,12 @@ package br.edu.ifms.mapeamento;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -34,10 +28,10 @@ public class ManutencaoMapeamento implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    private String funcionarioQueIdentificou;
-    private String funcionarioqueFezManutencao;
     private String descricaoDoProblema;
     private String descricaoDaSolucao;
+    private String funcionarioDetectouProblema;
+    private String funcionarioRealizouManutencao;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataQueIdentificou;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -64,22 +58,6 @@ public class ManutencaoMapeamento implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getFuncionarioQueIdentificou() {
-        return funcionarioQueIdentificou;
-    }
-
-    public void setFuncionarioQueIdentificou(String funcionarioQueIdentificou) {
-        this.funcionarioQueIdentificou = funcionarioQueIdentificou;
-    }
-
-    public String getFuncionarioqueFezManutencao() {
-        return funcionarioqueFezManutencao;
-    }
-
-    public void setFuncionarioqueFezManutencao(String funcionarioqueFezManutencao) {
-        this.funcionarioqueFezManutencao = funcionarioqueFezManutencao;
     }
 
     public String getDescricaoDoProblema() {
@@ -153,4 +131,21 @@ public class ManutencaoMapeamento implements Serializable {
     public void setFuncionario(FuncionarioMapeamento funcionario) {
         this.funcionario = funcionario;
     }
+
+    public String getFuncionarioDetectouProblema() {
+        return funcionarioDetectouProblema;
+    }
+
+    public void setFuncionarioDetectouProblema(String funcionarioDetectouProblema) {
+        this.funcionarioDetectouProblema = funcionarioDetectouProblema;
+    }
+
+    public String getFuncionarioRealizouManutencao() {
+        return funcionarioRealizouManutencao;
+    }
+
+    public void setFuncionarioRealizouManutencao(String funcionarioRealizouManutencao) {
+        this.funcionarioRealizouManutencao = funcionarioRealizouManutencao;
+    }
+
 }

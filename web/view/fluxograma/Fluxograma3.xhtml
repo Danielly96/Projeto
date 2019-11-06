@@ -11,47 +11,7 @@ and open the template in the editor.
                 template="/template/template.xhtml">
 
     <ui:define name="menu">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list" >
-                            </span>Menu</a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td>
-                                    <span class=""></span><h:link outcome="/view/home.xhtml" value="Inicio"/>
-                            </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class=""></span><h:link outcome="/view/areas.xhtml" value="Areas"/>
-                            </td>
-                            </tr>     
-                            <tr>
-                                <td>
-                                    <span class=""></span><h:link outcome="/view/fluxograma/Fluxograma2.xhtml" value="Fluxograma 2"/>
-                            </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class=""></span><h:link outcome="/view/fluxograma/Fluxograma3.xhtml" value="Fluxograma 3"/>
-                            </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class=""></span><h:link outcome="/view/maquinaSelecionada.xhtml" value="Maquina Selecionada"/>
-                            </td>
-                            </tr>                   
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </ui:define>   
     <ui:define name="corpo">
         <font style="color: #1C1C1C" text-align="center"> <h3>Selecione Uma Máquina:</h3></font> 
@@ -61,7 +21,7 @@ and open the template in the editor.
                 width: 50px;
             }
 
-            table {
+            .tabela {
                 border: 0px;
                 background-image: url(../../resources/imagens/fluxogramaArea3.png);
                 background-size:115%;
@@ -70,10 +30,11 @@ and open the template in the editor.
                 background-position: top center;
             }
         </style>
-        <table >
+        <table class="tabela" style=""  >
 
             <thead>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -92,20 +53,33 @@ and open the template in the editor.
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><h:button class="btn btn-danger" outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Trator"/></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+            <h:form>
+                <h:commandButton class="btn btn-danger" action="#{fluxogramaBean.chamadaDoFluxograma(2)}" style="font-weight: 700; color:black; text-align: left;" value="Trator"/>
+            </h:form>
+            </td>
             <td></td>
             <td></td>
             <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><h:button class="btn btn-danger" outcome="/view/maquinaSelecionada.xhtml" style="font-weight: 700; color:black; text-align: left;" value="Esteira"/></td>
+             <td>
+            <h:form>
+                <h:commandButton class="btn btn-danger" action="#{fluxogramaBean.chamadaDoFluxograma(1)}" style="font-weight: 700; color:black; text-align: left;" value="Esteira"/>
+            </h:form>
+            </td>
             <td></td>
             </tr>
             <tr>
@@ -187,7 +161,7 @@ and open the template in the editor.
             </tr>
             </tbody>
         </table>
-
+        <br/>
     </ui:define>
 </ui:composition>
 

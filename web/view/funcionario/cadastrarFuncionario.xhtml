@@ -8,28 +8,21 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="corpo">
-        <h1> Cadastro de Funcionarios</h1>
-        <h:form>
-            <div class="form-group">
-                <label for="lblNome">Nome</label>                
-                <h:inputText class="form-control" id="lblNome" value="#{funcionarioBean.fmape.nome}"/>
-            </div>
-            <div class="form-group">
-                <label for="lblmatricula">Matricula</label>                
-                <h:inputText class="form-control" id="lblTipo" value="#{funcionarioBean.fmape.matricula}"/>
-            </div>
-            <div class="form-group" onload="#{funcaoBean.buscarTodos()}">
-                <label for="planoId">Função</label>
-                <h:selectOneMenu class="form-control" id="planoId" value="#{funcionarioBean.funcaoMapeamento.id}">
-                    <f:selectItems value="#{funcaoBean.listaDeFuncoes}" var="c"
-                                   itemLabel="#{c.descricao}" itemValue="#{c.id}" />
-                </h:selectOneMenu>
-            </div>
-            <h:commandButton class="btn btn-success" value="salvar" action= "#{funcionarioBean.salvar()}"/>
-        </h:form>
-
-        <br/><br/>
-        <h3>Funcionários já cadastrados</h3>
+        <style type="text/css">
+            .field {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 100%;
+                height: 40%;
+                float: none;
+            }
+             .msg{
+                font-size: 200%;
+                color: blue;
+            }
+        </style>
+        <h1>Funcionários já cadastrados</h1>
         <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{funcionarioBean.buscarTodos()}">
             <thead>
                 <tr>
@@ -37,6 +30,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Matricula</th>
                     <th scope="col">Função</th>
+                    <th scope="col">#</th>
                 </tr>   
             </thead>
             <tbody> 
@@ -46,23 +40,56 @@
                         <td>#{funcionarios.nome}</td>
                         <td>#{funcionarios.matricula}</td>
                         <td>#{funcionarios.funcao.descricao}</td>
+                        <td>
+                            <h:form>
+                                <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{funcionarioBean.excluir(funcionarios.id)}"/>
+                            </h:form>
+                        </td>
+                        <td>
+                            <h:form>
+                                <h:commandButton class="btn btn-success" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{funcionarioBean.editar(funcionarios.id)}"/>
+                            </h:form>
+                        </td>
                     </tr>
                 </ui:repeat>
             </tbody>
         </table>
-
+        <h3> Cadastro de Funcionarios</h3>
+        <hr/>
+        <div class="field">
+            <h:form>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="lblNome">Nome</label>                
+                    <h:inputText class="form-control" value="#{funcionarioBean.fmape.nome}"/>
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="lblmatricula">Matricula</label>                
+                    <h:inputText class="form-control" id="lblTipo" value="#{funcionarioBean.fmape.matricula}"/>
+                </div>
+                <div class="form-group col-md-6 col-sm-12" onload="#{funcaoBean.buscarTodos()}">
+                    <label for="planoId">Função</label>
+                    <h:selectOneMenu class="form-control" id="planoId" value="#{funcionarioBean.funcaoMapeamento.id}">
+                        <f:selectItems value="#{funcaoBean.listaDeFuncoes}" var="c"
+                                       itemLabel="#{c.descricao}" itemValue="#{c.id}" />
+                    </h:selectOneMenu>
+                </div>
+                <h:commandButton class="btn btn-success" value="salvar" action= "#{funcionarioBean.salvar()}"/>
+                  <h:messages class="msg" />
+            </h:form>
+        </div>
+        <br/><br/>
         <script>
-            $(document).ready(function () {
-                $('#minhaTabela').DataTable({
-                    "language": {
-                        "lengthMenu": "Mostrando _MENU_ registros por página",
-                        "zeroRecords": "Nada encontrado",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "Nenhum registro disponível",
-                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
-                    }
-                });
-            });
+                                    $(document).ready(function () {
+                                        $('#minhaTabela').DataTable({
+                                            "language": {
+                                                "lengthMenu": "Mostrando _MENU_ registros por página",
+                                                "zeroRecords": "Nada encontrado",
+                                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                "infoEmpty": "Nenhum registro disponível",
+                                                "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                                            }
+                                        });
+                                    });
         </script>
 
     </ui:define>

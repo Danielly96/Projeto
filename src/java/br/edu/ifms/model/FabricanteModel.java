@@ -37,4 +37,15 @@ public class FabricanteModel extends Conexao {
         super.executar();
         return listaDeFabricantes;
     }
+      public void excluir(FabricanteMapeamento fabricante){
+        super.inicializa();
+        super.getSess().delete(fabricante);
+        super.executar();
+    }
+        public void update(FabricanteMapeamento fabricanteMapeamento) {
+        super.inicializa();
+        super.getSess().update(fabricanteMapeamento);
+        super.executar();
+
+    }
 }

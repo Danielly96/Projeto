@@ -36,9 +36,31 @@ public class ManutencaoModel extends Conexao{
        return listaDeManutencoes;
     }
     
+    public List<ManutencaoMapeamento> buscarTodosEmManutencao(){
+       List<ManutencaoMapeamento> listaDeManutencoes = new ArrayList<>();
+       super.inicializa();
+       listaDeManutencoes = super.getSess().createQuery("from ManutencaoMapeamento where emManutencao = true").list();
+       super.executar();
+       return listaDeManutencoes;
+    }
+     public List<ManutencaoMapeamento> buscarTodosFinalizados(){
+       List<ManutencaoMapeamento> listaDeManutencoes = new ArrayList<>();
+       super.inicializa();
+       listaDeManutencoes = super.getSess().createQuery("from ManutencaoMapeamento where emManutencao = false").list();
+       super.executar();
+       return listaDeManutencoes;
+    }
+    
     public void excluir(ManutencaoMapeamento manutencao){
         super.inicializa();
         super.getSess().delete(manutencao);
         super.executar();
+    }
+    
+    public void update(ManutencaoMapeamento manutencaoMapeamento) {
+        super.inicializa();
+        super.getSess().update(manutencaoMapeamento);
+        super.executar();
+
     }
 }

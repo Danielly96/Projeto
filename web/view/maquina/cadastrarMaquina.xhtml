@@ -8,20 +8,78 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="corpo">
+        <!---https://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp-->
+        <br/><br/>
+        <style type="text/css">
+            .novo {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 100%;
+                height: 40%;
+                float: none;
+            }
+            .msg{
+                font-size: 200%;
+                color: blue;
+            }
+        </style>
+        <div class="field">
+            <h3>Maquinas já cadastradas</h3>
+            <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{maquinaBean.buscarTodos()}">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Tipo </th>
+                        <th scope="col">Fabricante </th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                    </tr>   
+                </thead>
+                <tbody> 
+                    <ui:repeat value="#{maquinaBean.listaDeMaquinas}" var="maquinas">
+                        <tr>
+                            <td>#{maquinas.id}</td>
+                            <td>#{maquinas.descricao}</td>
+                            <td>#{maquinas.tipo.descricao}</td>
+                            <td>#{maquinas.fabricante.nome}</td>
+                        
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{maquinaBean.excluir(maquinas.id)}"/>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-success" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{maquinaBean.editar(maquinas.id)}"/>
+                                </h:form>
+                            </td>
+
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+        </div>
         <h1> Cadastro de Maquinas</h1>
-        <h:form>
-            <div class="form-group">
+        <h:form class="novo">
+            <div class="form-group col-md-12 col-sm-12">
                 <label for="lblDescricao">Descrição</label>                
                 <h:inputText class="form-control" id="lblDescricao" value="#{maquinaBean.maquinaMapeamento.descricao}"/>
             </div>
-            <div class="form-group" onload="#{tipoBean.buscarTodos()}">
+            <div class="form-group col-md-12 col-sm-12">
+                <label for="lblImagem">Imagem</label>       
+                <input type="hidden" name="MAX_FILE_SIZE" value="#{maquinaBean.maquinaMapeamento.caminhoImagem}"/>
+                <div><input name="imagem" type="file"/></div>
+            </div>
+            <div class="form-group col-md-6 col-sm-12" onload="#{tipoBean.buscarTodos()}">
                 <label for="tipoId">Tipo</label>
                 <h:selectOneMenu class="form-control" id="tipoId" value="#{maquinaBean.tmape.id}">
                     <f:selectItems value="#{tipoBean.listaDeTipos}" var="t"
                                    itemLabel="#{t.descricao}" itemValue="#{t.id}" />
                 </h:selectOneMenu>
             </div>
-            <div class="form-group" onload="#{fabricanteBean.buscarTodos()}">
+            <div class="form-group col-md-6 col-sm-12" onload="#{fabricanteBean.buscarTodos()}">
                 <label for="fabricanteId">Fabricante</label>
                 <h:selectOneMenu class="form-control" id="fabricanteId" value="#{maquinaBean.fmape.id}">
                     <f:selectItems value="#{fabricanteBean.listaDeFabricantes}" var="f"
@@ -29,43 +87,21 @@
                 </h:selectOneMenu>
             </div>
             <h:commandButton class="btn btn-success" value="salvar" action= "#{maquinaBean.salvar()}"/>
+            <h:messages class="msg" />
         </h:form>
 
-        <br/><br/>
-        <h3>Maquinas já cadastradas</h3>
-        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{maquinaBean.buscarTodos()}">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">descrição</th>
-                    <th scope="col">Tipo </th>
-                    <th scope="col">Fabricante </th>
-                </tr>   
-            </thead>
-            <tbody> 
-                <ui:repeat value="#{maquinaBean.listaDeMaquinas}" var="maquinas">
-                    <tr>
-                        <td>#{maquinas.id}</td>
-                        <td>#{maquinas.descricao}</td>
-                        <td>#{maquinas.tipo.descricao}</td>
-                        <td>#{maquinas.fabricante.nome}</td>
-                    </tr>
-                </ui:repeat>
-            </tbody>
-        </table>
-
         <script>
-            $(document).ready(function () {
-                $('#minhaTabela').DataTable({
-                    "language": {
-                        "lengthMenu": "Mostrando _MENU_ registros por página",
-                        "zeroRecords": "Nada encontrado",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "Nenhum registro disponível",
-                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
-                    }
-                });
-            });
+                                        $(document).ready(function () {
+                                            $('#minhaTabela').DataTable({
+                                                "language": {
+                                                    "lengthMenu": "Mostrando _MENU_ registros por página",
+                                                    "zeroRecords": "Nada encontrado",
+                                                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                    "infoEmpty": "Nenhum registro disponível",
+                                                    "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                                                }
+                                            });
+                                        });
         </script>
 
     </ui:define>

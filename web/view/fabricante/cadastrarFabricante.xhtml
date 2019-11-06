@@ -7,11 +7,63 @@
                 template="/template/template.xhtml">
 
     <ui:define name="corpo">
-        <h1> Cadastro de Fabricante</h1>
-        <h:form>
+
+        <style type="text/css">
+            .novo {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 100%;
+                height: 40%;
+                float: none;
+            }
+            .msg{
+                font-size: 200%;
+                color: blue;
+            }
+        </style>
+        <h1>Fabricantes já cadastrados</h1>
+        <hr/>
+        <div class="field">
+            <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{fabricanteBean.buscarTodos()}">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">E-Mail</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+                    </tr>   
+                </thead>
+                <tbody> 
+                    <ui:repeat value="#{fabricanteBean.listaDeFabricantes}" var="fabricantes">
+                        <tr>
+                            <td>#{fabricantes.id}</td>
+                            <td>#{fabricantes.nome}</td>
+                            <td>#{fabricantes.telefone}</td>
+                            <td>#{fabricantes.email}</td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{fabricanteBean.excluir(fabricantes.id)}"/>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-success" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{fabricanteBean.editar(fabricantes.id)}"/>
+                                </h:form>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+        </div>
+        <br/><br/>
+        <h3> Cadastro de Fabricante</h3>
+        <h:form class="novo">
             <div class="form-group">
                 <label for="lblNome">Nome</label>                
-                <h:inputText class="form-control" id="lblNome" value="#{fabricanteBean.fmap.nome}"/>
+                <h:inputText class="form-control" value="#{fabricanteBean.fmap.nome}"/>
             </div>
             <div class="form-group">
                 <label for="lblTelefone">Telefone</label>                
@@ -21,31 +73,10 @@
                 <label for="lblEmail">E-Mail</label>                
                 <h:inputText class="form-control" id="lblEmail" value="#{fabricanteBean.fmap.email}"/>
             </div>
-            <h:commandButton class="btn btn-success" value="salvar" action= "#{fabricanteBean.salvar()}"/>
-        </h:form>
+            <h:commandButton class="btn btn-success" value="salvar" action= "#{fabricanteBean.salvarEdicao()}"/>
+            <h:messages class="msg" />
 
-        <br/><br/>
-        <h3>Fabricantes já cadastrados</h3>
-        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{fabricanteBean.buscarTodos()}">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">E-Mail</th>
-                </tr>   
-            </thead>
-            <tbody> 
-                <ui:repeat value="#{fabricanteBean.listaDeFabricantes}" var="fabricantes">
-                    <tr>
-                        <td>#{fabricantes.id}</td>
-                        <td>#{fabricantes.nome}</td>
-                        <td>#{fabricantes.telefone}</td>
-                        <td>#{fabricantes.email}</td>
-                    </tr>
-                </ui:repeat>
-            </tbody>
-        </table>
+        </h:form>
 
         <script>
             $(document).ready(function () {

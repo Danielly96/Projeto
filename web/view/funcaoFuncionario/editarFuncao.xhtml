@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <!--xmlns:p="http://xmlns.jcp.org/jsf/passthrough"-->
+
+    <ui:define name="corpo">
+        <h1>Editar Função</h1>
+        <hr/>
+
+        <h:form>
+            <div class="row">
+                <div class="form-group">
+                    <label for="lblDescricao">Descrição</label>                
+                    <h:inputText class="form-control" id="lblDescricao" value="#{funcaoBean.funcaomape.descricao}"/>
+                </div>
+            </div>
+            <h:commandButton class="btn btn-success" value="Salvar Alteração" action= "#{funcaoBean.salvarEdicao()}"/>
+        </h:form>
+
+
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+
+    </ui:define>
+</ui:composition>

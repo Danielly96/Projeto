@@ -17,5 +17,6 @@
     <mapping class="br.edu.ifms.mapeamento.PecaMapeamento"/>
     <mapping class="br.edu.ifms.mapeamento.SubconjuntoMapeamento"/>
     <mapping class="br.edu.ifms.mapeamento.ManutencaoMapeamento"/>
+    <mapping class="br.edu.ifms.mapeamento.UsuarioMapeamento"/>
   </session-factory>
 </hibernate-configuration>

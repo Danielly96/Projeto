@@ -30,54 +30,48 @@
                     </h:inputText>
                 </div>
             </div>
-            <div class="row">               
-                <div class="form-group col-md-8 col-sm-12">
-                    <label for="lblFuncionarioIdentificouId">Funcionário que identificou o problema</label>                
-                    <h:inputText readonly="true" class="form-control" id="lblFuncionarioIdentificouId" value="#{manutencaoBean.manutencaomape.funcionarioQueIdentificou}"/>
-                </div>
-                <div class="form-group col-md-4 col-sm-12">
-                    <label for="lblDataMarcada">Data Limite</label>                
-                    <h:inputText class="form-control" readonly="true" id="lblDataMarcada" value="#{manutencaoBean.manutencaomape.dataManutencaoMarcada}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:inputText>
-                </div>
-            </div>   
+            <div class="form-group col-md-4 col-sm-12">
+                <label for="lblDataMarcada">Data Limite</label>                
+                <h:inputText class="form-control" readonly="true" id="lblDataMarcada" value="#{manutencaoBean.manutencaomape.dataManutencaoMarcada}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
+            </div>
 
             <div class="row">               
                 <div class="form-group col-md-8 col-sm-12">
-                    <label for="lblFuncionarioManutencao">Funcionário que realizou a Manutenção</label>                
-                    <h:inputText class="form-control" id="lblFuncionarioManutencao" value="#{manutencaoBean.manutencaomape.funcionarioqueFezManutencao}"/>
-                </div>
-                <div class="form-group col-md-4 col-sm-12">
-                    <label for="lblDataRealizada">Data de Realização</label>                
-                    <p:calendar id="lblDataRealizada" value="#{manutencaoBean.manutencaomape.dataManutencaoRealizada}" pattern="dd/MM/yyyy" mask="true" locale="pt"></p:calendar>
-                </div>
+                    <label for="lblFuncionarioRealizou">Funcionário que realizou a Manutenção</label>                
+                    <h:inputText class="form-control" id="lblFuncionarioManutencao" value="#{manutencaoBean.manutencaomape.funcionarioRealizouManutencao}"/>
             </div>
-          
-
-            <div class="form-group">
-                <label for="lblDescricaoSolucao">Descrição da Solução</label>                
-                <h:inputTextarea class="form-control" id="lblDescricaoSolucao" value="#{manutencaoBean.manutencaomape.descricaoDaSolucao}"/>
+            <div class="form-group col-md-4 col-sm-12">
+                <label for="lblDataRealizada">Data de Realização</label>                
+                <p:calendar id="lblDataRealizada" value="#{manutencaoBean.manutencaomape.dataManutencaoRealizada}" pattern="dd/MM/yyyy" mask="true" locale="pt"></p:calendar>
             </div>
-            <h:commandButton class="btn btn-success" value="Finalizar Manutenção" action= "#{manutencaoBean.salvarEdicao()}"/>
-        </h:form>
+        </div>
+
+
+        <div class="form-group">
+            <label for="lblDescricaoSolucao">Descrição da Solução</label>                
+            <h:inputTextarea class="form-control" id="lblDescricaoSolucao" value="#{manutencaoBean.manutencaomape.descricaoDaSolucao}"/>
+        </div>
+        <h:commandButton class="btn btn-success" value="Finalizar Manutenção" action= "#{manutencaoBean.salvarEdicao()}"/>
+    </h:form>
 
 
 
-        <script>
-            $(document).ready(function () {
-                $('#minhaTabela').DataTable({
-                    "language": {
-                        "lengthMenu": "Mostrando _MENU_ registros por página",
-                        "zeroRecords": "Nada encontrado",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "Nenhum registro disponível",
-                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
-                    }
-                });
+    <script>
+        $(document).ready(function () {
+            $('#minhaTabela').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ registros por página",
+                    "zeroRecords": "Nada encontrado",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro disponível",
+                    "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                }
             });
-        </script>
+        });
+    </script>
 
-    </ui:define>
+</ui:define>
 </ui:composition>
 

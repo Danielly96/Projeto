@@ -34,4 +34,16 @@ public class PrioridadeModel  extends Conexao{
        super.executar();
        return listaDePrioridades;
     }
+      public void excluir(PrioridadeMapeamento prioridade){
+        super.inicializa();
+        super.getSess().delete(prioridade);
+        super.executar();
+    }
+      
+    public void update(PrioridadeMapeamento prioridadeMapeamento) {
+        super.inicializa();
+        super.getSess().update(prioridadeMapeamento);
+        super.executar();
+
+    }
 }

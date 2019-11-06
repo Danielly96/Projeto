@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="corpo">
+        <style type="text/css">
+            .btn{
+                text-align: center;
+            }
+            .msg{
+                font-size: 200%;
+                color: blue;
+            }
+        </style>
+        <h1>Manutenção</h1>
+        <hr/>
+        <div class="field">
+            <h3>Manutenções Finalizadas</h3>
+            <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{manutencaoBean.buscarTodosFinalizados()}">
+                <thead>
+                    <tr>
+                        <th scope="col">Máquina</th>
+                        <th scope="col">Prioridade</th>
+                        <th scope="col">Detectado em</th>
+                        <th scope="col">#</th>
+                    </tr>   
+                </thead>
+                <tbody> 
+                    <ui:repeat value="#{manutencaoBean.listaDeManutencoes}" var="manutencoes">
+                        <tr>
+                            <td>#{manutencoes.maquina.descricao}</td>
+                            <td>#{manutencoes.prioridade.descricao}</td>
+                            <td><h:outputText value="#{manutencoes.dataQueIdentificou}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </h:outputText></td>
+                            <td>
+                                <!--a class="openMyModal product-title" data-id='{"nome": "@Model.Mensagens[i].Cliente.Nome", "pessoaId": @Model.Mensagens[i].Cliente.PessoaId, "mensagemId": @Model.Mensagens[i].MensagemId, "conteudo": "@Model.Mensagens[i].Conteudo"}' data-toggle="modal" href="#myModal"></a-->
+                                <button class="openMyModal btn btn-primary" data-id='{"problema": "#{manutencoes.descricaoDoProblema}"}' data-toggle="modal" data-target="#modal-descricaoProblema" id="btn-descricaoProblema">Descrição</button>
+                                <!--button type="submit" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Descrição</button-->
+                            </td>
+
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+        </div>
+        <hr/>
+        <script>
+            $(document).on("click", ".openMyModal", function () {
+                var data = $(this).data('id');
+                $("#paDescricaoProblema").text(data.problema);
+            }
+
+            $(document).ready(function () {
+            $("#btn-descricaoProblema").click(function () {
+                $("#modal-descricaoProblema").modal();
+            });
+
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR'
+            });
+
+            $('#minhaTabela').DataTable({
+            "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+                    "zeroRecords": "Nada encontrado",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro disponível",
+                    "infoFiltered": "(filtrado de _MAX_ registros no total)"
+            }
+            });
+            });
+        </script>
+
+    </ui:define>
+</ui:composition>
+

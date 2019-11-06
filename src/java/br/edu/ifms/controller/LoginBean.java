@@ -9,10 +9,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
 @ManagedBean
 @RequestScoped
-public class Login {
+public class LoginBean {
 
     private String username;
     private String password;
@@ -24,7 +23,7 @@ public class Login {
         if (this.username.equals("admin") && this.password.equals("admin")) {
             context.getExternalContext().getSessionMap().put("user", username);
             try {
-                context.getExternalContext().redirect("principal.xhtml");
+                context.getExternalContext().redirect("/Projeto/faces/view/principal.xhtml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

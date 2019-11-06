@@ -7,33 +7,62 @@
                 template="/template/template.xhtml">
 
     <ui:define name="corpo">
-        <h1> Cadastro de Função</h1>
-        <h:form>
+        <style type="text/css">
+            .novo {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 100%;
+                height: 40%;
+                float: none;
+            }
+            .msg{
+                font-size: 200%;
+                color: blue;
+            }
+        </style>
+        <h1>Funções já cadastradas</h1>
+        <hr/>
+        <div class="field">
+            <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{funcaoBean.buscarTodos()}">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">#</th>
+                    </tr>   
+                </thead>
+                <tbody> 
+                    <ui:repeat value="#{funcaoBean.listaDeFuncoes}" var="funcoes">
+                        <tr>
+                            <td>#{funcoes.id}</td>
+                            <td>#{funcoes.descricao}</td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{funcaoBean.excluir(funcoes.id)}"/>
+                                </h:form>
+                            </td>
+                            <td>
+                                <h:form>
+                                    <h:commandButton class="btn btn-success" value="Alterar" onclick="return confirm('Deseja realmente alterar o registro?')" action= "#{funcaoBean.editar(funcoes.id)}"/>
+                                </h:form>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table>
+        </div>
+        <br/><br/>
+        <h3> Cadastro de Função</h3>
+        <h:form class="novo">
             <div class="form-group">
                 <label for="lblDescricao">Descrição</label>                
                 <h:inputText class="form-control" id="lblDescricao" value="#{funcaoBean.funcaomape.descricao}"/>
             </div>
             <h:commandButton class="btn btn-success" value="salvar" action= "#{funcaoBean.salvar()}"/>
-        </h:form>
+            <h:messages class="msg" />
 
-        <br/><br/>
-        <h3>Funções já cadastradas</h3>
-        <table id="minhaTabela" data-page-length='5' class="table table-bordered table-striped"  onload="#{funcaoBean.buscarTodos()}">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Descrição</th>
-                </tr>   
-            </thead>
-            <tbody> 
-                <ui:repeat value="#{funcaoBean.listaDeFuncoes}" var="funcoes">
-                    <tr>
-                        <td>#{funcoes.id}</td>
-                        <td>#{funcoes.descricao}</td>
-                    </tr>
-                </ui:repeat>
-            </tbody>
-        </table>
+        </h:form>
 
         <script>
             $(document).ready(function () {

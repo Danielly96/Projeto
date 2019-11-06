@@ -16,11 +16,13 @@ import br.edu.ifms.model.UsuarioModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class UsuarioBean implements Serializable {
 
     private UsuarioMapeamento usuariomape;
@@ -45,7 +47,12 @@ public class UsuarioBean implements Serializable {
         try {
             usuariomodel.inserir(usuariomape);
             this.usuariomape = new UsuarioMapeamento();
-            this.msg = "Salvo com Sucesso!";
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Salvo com sucesso!"));
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
         } catch (Exception e) {
             this.msg = "Erro" + e.getMessage();
         }
@@ -102,5 +109,5 @@ public class UsuarioBean implements Serializable {
     public void setListaDeUsuarios(List<UsuarioMapeamento> listaDeUsuarios) {
         this.listaDeUsuarios = listaDeUsuarios;
     }
-    
+
 }

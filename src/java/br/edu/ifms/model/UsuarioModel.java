@@ -36,4 +36,16 @@ public class UsuarioModel extends Conexao{
         super.executar();
         return listaDeUsuarios;
     }
+      public void excluir(UsuarioMapeamento usuario) {
+        super.inicializa();
+        super.getSess().delete(usuario);
+        super.executar();
+    }
+
+    public void update(UsuarioMapeamento usuario) {
+        super.inicializa();
+        super.getSess().update(usuario);
+        super.executar();
+
+    }
 }

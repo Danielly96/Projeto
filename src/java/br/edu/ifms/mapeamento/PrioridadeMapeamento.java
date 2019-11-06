@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifms.mapeamento;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,25 +16,14 @@ import javax.persistence.Table;
  * @author Danielly
  */
 @Entity
-@Table (name ="prioridade")
-public class PrioridadeMapeamento implements Serializable{
+@Table(name = "prioridade")
+public class PrioridadeMapeamento implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; 
+    @GeneratedValue
+    private long id;
     private String descricao;
-    private String qntdias;
-    /*@OneToMany(mappedBy="prioridade", fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    private Collection manutencao;*/
-
-    public PrioridadeMapeamento(long id, String descricao, String qntdias) {
-        this.id = id;
-        this.descricao = descricao;
-        this.qntdias = qntdias;
-    }
-
-    public PrioridadeMapeamento() {
-    }
+    private int qntdias;
 
     public long getId() {
         return id;
@@ -54,11 +41,12 @@ public class PrioridadeMapeamento implements Serializable{
         this.descricao = descricao;
     }
 
-    public String getQntdias() {
+    public int getQntdias() {
         return qntdias;
     }
 
-    public void setQntdias(String qntdias) {
+    public void setQntdias(int qntdias) {
         this.qntdias = qntdias;
-    }  
+    }
+
 }

@@ -32,24 +32,43 @@ and open the template in the editor.
                 color: black;
                 font-family:initial;
                 text-align: justify;
-                font-size: 180%;
-                padding: 20px;
+                font-size: 150%;
             }
             h1 {
-                color: #003bb3;
+                color: black;
                 font-family:initial;
                 text-align: justify;
-                font-size: 250%;
-            }    
+                font-size: 180%;
+            }
+            .cont {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 50%;
+                height: 40%;
+                float: none;
+            }
+            form{
+                text-align:center;
+            }
+
         </style>
-        <h1>Software Para Fornecer 
-            Informações Sobre Máquinas E Equipamentos De Uma 
-            Mineradora</h1>
-        <h2>&#160;&#160;&#160;O objetivo deste sistema é utilizar as informações das máquinas e equipamentos,
-            com o intuito de auxiliar na tomada de decisão da manutenção,
-            a fim de intervir na situação de anormalidade em máquinas
-            e equipamentos na Mineradora.  </h2>
-        <h:graphicImage library="imagens" name="inicio.png" style="width:50%"></h:graphicImage>
+        <div class="cont">
+            <h:form id="formLogin">
+                <h1>Acesso Restrito de Informações </h1>
+                <h:form id="myform" >
+                    <h:outputText value="Login: "/>
+                    <h:inputText label="Login" value="#{loginBean.username}" /><br/><br/>
+                    <h:outputText value="Senha: "/>
+                    <h:inputSecret value="#{loginBean.password}" /><br/><br/>
+                    <h:commandButton class="btn btn-info" value="login" action="#{loginBean.login}" />
+                </h:form>
+                <h:form>
+                    <br><br></br></br>
+                    <p style=" font-family: 'Arial'; font-style: italic; color:black ; text-align: center; font-size:20px"><h:link outcome="/view/Usuario/CadastrarUsuario.xhtml" value="Cadastrar Usuario"/> </p>
+                </h:form>
+            </h:form>
+        </div>
     </ui:define>
     <ui:define name="menu">
 

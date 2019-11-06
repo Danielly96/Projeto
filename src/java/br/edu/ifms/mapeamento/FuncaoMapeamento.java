@@ -21,17 +21,7 @@ public class FuncaoMapeamento implements Serializable{
     @GeneratedValue
     private long id; 
     private String descricao;
-    /*@OneToMany(mappedBy="funcao", fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
-    private Collection funcionarios;*/
 
-    public FuncaoMapeamento(long id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
-    }
-
-    public FuncaoMapeamento() {
-    }
 
     public long getId() {
         return id;

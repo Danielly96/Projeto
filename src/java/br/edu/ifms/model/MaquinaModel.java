@@ -38,9 +38,17 @@ public class MaquinaModel extends Conexao {
         super.executar();
         return listaDeMaquinas;
     }
-    /*public void excluir(MaquinaMapeamento mm) {
+
+    public void excluir(MaquinaMapeamento maquina) {
         super.inicializa();
-        super.remove(super.find(id));
+        super.getSess().delete(maquina);
         super.executar();
-    }*/
+    }
+
+    public void update(MaquinaMapeamento maquinaMapeamento) {
+        super.inicializa();
+        super.getSess().update(maquinaMapeamento);
+        super.executar();
+
+    }
 }

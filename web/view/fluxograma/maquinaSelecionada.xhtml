@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/template.xhtml">
+
+    <ui:define name="menu">
+
+    </ui:define>
+    <ui:define name="corpo">
+        <font style="color: #1C1C1C" text-align="center"> <h3>Máquina Selecionada</h3></font> 
+        <!-- <h:graphicImage library="imagens" name="esteira.jpg" style="width:50%"/>-->
+
+        <style type="text/css">
+            td {
+                height: 50px;
+                width: 50px;
+                font-weight: bold;
+            }
+
+            table {
+                border: 0px;
+                background-size:80%;
+                width: 600px;
+                background-repeat: no-repeat;
+                background-position: top center;
+            }
+        </style>
+        <form>
+            <div class="row">               
+                <div class="form-group col-md-8 col-sm-12">
+                    <label for="lblNome">Nome:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.descricao}"/>
+                </div>
+                <div class="form-group col-md-4 col-sm-12" onload="#{tipoBean.buscarTodos()}">
+                    <label for="tipoId">Tipo</label>
+                    <h:inputText class="form-control" readonly="true" value="${fluxogramaBean.maquinaMapeamento.tipo.descricao}" />
+                </div>
+                <div class="form-group col-md-4 col-sm-12" onload="#{fabricanteBean.buscarTodos()}">
+                    <label for="fabricanteId">Fabricante</label>
+                    <h:inputText class="form-control" readonly="true" value="${fluxogramaBean.maquinaMapeamento.fabricante.nome}" />
+                </div>
+                <div class="form-group col-md-8 col-sm-12">
+                    <label for="lblImg">Imagem:</label>                
+                    <h:graphicImage value="#{fluxogramaBean.maquinaMapeamento.caminhoImagem}"/>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            $(document).ready(function () {
+                $('#minhaTabela').DataTable({
+                    "language": {
+                        "lengthMenu": "Mostrando _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro disponível",
+                        "infoFiltered": "(filtrado de _MAX_ registros no total)"
+                    }
+                });
+            });
+        </script>
+    </ui:define>
+</ui:composition>

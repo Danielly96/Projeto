@@ -14,26 +14,40 @@ import java.util.List;
  *
  * @author Danielly
  */
-public class FuncaoModel extends Conexao{
-     public void inserir(FuncaoMapeamento funcaoMapeamento){
+public class FuncaoModel extends Conexao {
+
+    public void inserir(FuncaoMapeamento funcaoMapeamento) {
         super.inicializa();
         super.getSess().save(funcaoMapeamento);
         super.executar();
     }
-     
-     public FuncaoMapeamento buscarPorId(Long id){
+
+    public FuncaoMapeamento buscarPorId(Long id) {
         FuncaoMapeamento funcaoMapeamento;
         super.inicializa();
         funcaoMapeamento = (FuncaoMapeamento) super.getSess().get(FuncaoMapeamento.class, id);
         super.executar();
         return funcaoMapeamento;
     }
-     
-    public List<FuncaoMapeamento> buscarTodos(){
-       List<FuncaoMapeamento> listaDeFuncoes = new ArrayList<>();
-       super.inicializa();
-       listaDeFuncoes = super.getSess().createQuery("from FuncaoMapeamento").list();
-       super.executar();
-       return listaDeFuncoes;
+
+    public List<FuncaoMapeamento> buscarTodos() {
+        List<FuncaoMapeamento> listaDeFuncoes = new ArrayList<>();
+        super.inicializa();
+        listaDeFuncoes = super.getSess().createQuery("from FuncaoMapeamento").list();
+        super.executar();
+        return listaDeFuncoes;
+    }
+
+    public void excluir(FuncaoMapeamento funcao) {
+        super.inicializa();
+        super.getSess().delete(funcao);
+        super.executar();
+    }
+
+    public void update(FuncaoMapeamento funcaoMapeamento) {
+        super.inicializa();
+        super.getSess().update(funcaoMapeamento);
+        super.executar();
+
     }
 }

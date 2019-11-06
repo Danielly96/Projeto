@@ -34,4 +34,16 @@ public class PecaModel  extends Conexao{
        super.executar();
        return listaDePecas;
     }
+    public void excluir(PecaMapeamento peca){
+        super.inicializa();
+        super.getSess().delete(peca);
+        super.executar();
+    }
+    
+    public void update(PecaMapeamento pecaMapeamento) {
+        super.inicializa();
+        super.getSess().update(pecaMapeamento);
+        super.executar();
+
+    }
 }

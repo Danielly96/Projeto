@@ -37,4 +37,15 @@ public class FuncionarioModel extends Conexao {
         super.executar();
         return listaDeFuncionarios;
     }
+     public void excluir(FuncionarioMapeamento funcionario){
+        super.inicializa();
+        super.getSess().delete(funcionario);
+        super.executar();
+    }
+       public void update(FuncionarioMapeamento funcionarioMapeamento) {
+        super.inicializa();
+        super.getSess().update(funcionarioMapeamento);
+        super.executar();
+
+    }
 }

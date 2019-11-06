@@ -15,15 +15,17 @@ import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Danielly
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class SubconjuntoBean implements Serializable {
 
     private SubconjuntoMapeamento subconjuntomape;
@@ -46,6 +48,18 @@ public class SubconjuntoBean implements Serializable {
         this.pecaModel = new PecaModel();
     }
 
+    public void inicializa() {
+        this.subconjuntomape = null;
+        this.maquinaMapeamento = null;
+        this.pecaMapeamento = null;
+        this.retornoAcao = null;
+        this.subconjuntomape = new SubconjuntoMapeamento();
+        this.maquinaMapeamento = new MaquinaMapeamento();
+        this.pecaMapeamento = new PecaMapeamento();
+        this.msg = "";
+        this.retornoAcao = new RetornoAcao();
+    }
+
     public void salvar() {
         maquinaMapeamento = this.maquinaModel.buscarPorId(maquinaMapeamento.getId());
         subconjuntomape.setMaquina(maquinaMapeamento);
@@ -54,14 +68,50 @@ public class SubconjuntoBean implements Serializable {
         try {
             subconjuntomodel.inserir(subconjuntomape);
             this.subconjuntomape = new SubconjuntoMapeamento();
-            this.msg = "Salvo com Sucesso!";
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Salvo com sucesso!"));
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
         } catch (Exception e) {
             this.msg = "Erro" + e.getMessage();
         }
     }
 
+    public String editar(Long subconjuntoID) {
+        this.subconjuntomape = subconjuntomodel.buscarPorId(subconjuntoID);
+
+        return "editarSubconjunto.xhtml?faces-redirect=true";
+    }
+
+    public String salvarEdicao() {
+        maquinaMapeamento = this.maquinaModel.buscarPorId(maquinaMapeamento.getId());
+        subconjuntomape.setMaquina(maquinaMapeamento);
+        pecaMapeamento = this.pecaModel.buscarPorId(pecaMapeamento.getId());
+        subconjuntomape.setPeca(pecaMapeamento);
+        try {
+            subconjuntomodel.update(subconjuntomape);
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Salvo com sucesso!"));
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+        } catch (Exception e) {
+            this.msg = "Erro" + e.getMessage();
+        }
+        return "cadastrarSubconjunto.xhtml?faces-redirect=true";
+    }
+
     public void buscarTodos() {
+        inicializa();
         this.listaDeSubconjuntos = subconjuntomodel.buscarTodos();
+    }
+
+    public void excluir(Long subconjuntoID) {
+        this.subconjuntomodel.excluir(subconjuntomodel.buscarPorId(subconjuntoID));
+
     }
 
     public SubconjuntoMapeamento getSubconjuntomape() {

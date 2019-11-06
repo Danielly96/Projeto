@@ -9,9 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -20,43 +20,17 @@ import org.hibernate.annotations.FetchMode;
  * @author Danielly
  */
 @Entity
-@Table(name = "funcionario")
-public class FuncionarioMapeamento implements Serializable {
+@Table(name = "login")
+public class LoginMapeamento implements Serializable {
 
     @Id
     @GeneratedValue
     private long id;
-    private long matricula;
-    private String nome;
 
     @ManyToOne()
-    @JoinColumn(name = "idFuncao", insertable = true, updatable = true)
+    @JoinColumn(name = "idUsuario", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
-    private FuncaoMapeamento funcao;
-
-    public long getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(long matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public FuncaoMapeamento getFuncao() {
-        return funcao;
-    }
-
-    public void setFuncao(FuncaoMapeamento funcao) {
-        this.funcao = funcao;
-    }
+    private UsuarioMapeamento usuario;
 
     public long getId() {
         return id;
@@ -65,4 +39,14 @@ public class FuncionarioMapeamento implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public UsuarioMapeamento getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioMapeamento usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 }
