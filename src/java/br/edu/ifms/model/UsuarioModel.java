@@ -14,7 +14,8 @@ import java.util.List;
  *
  * @author Danielly
  */
-public class UsuarioModel extends Conexao{
+public class UsuarioModel extends Conexao {
+
     public void inserir(UsuarioMapeamento usuarioMapeamento) {
         super.inicializa();
         super.getSess().save(usuarioMapeamento);
@@ -24,19 +25,31 @@ public class UsuarioModel extends Conexao{
     public UsuarioMapeamento buscarPorId(Long id) {
         UsuarioMapeamento usuarioMapeamento;
         super.inicializa();
-       usuarioMapeamento = (UsuarioMapeamento) super.getSess().get(UsuarioMapeamento.class, id);
+        usuarioMapeamento = (UsuarioMapeamento) super.getSess().get(UsuarioMapeamento.class, id);
         super.executar();
         return usuarioMapeamento;
+    }
+
+    public UsuarioMapeamento buscarPorLogin(String login) {
+        List<UsuarioMapeamento> listaDeUsuarios = new ArrayList<>();
+        super.inicializa();
+        listaDeUsuarios = super.getSess().createQuery("from UsuarioMapeamento where login = '"+login+"'").list();
+        super.executar();
+        if(listaDeUsuarios.isEmpty() || listaDeUsuarios.size() == 0){
+            return null;
+        }
+        return listaDeUsuarios.get(0);
     }
 
     public List<UsuarioMapeamento> buscarTodos() {
         List<UsuarioMapeamento> listaDeUsuarios = new ArrayList<>();
         super.inicializa();
-       listaDeUsuarios = super.getSess().createQuery("from UsuarioMapeamento").list();
+        listaDeUsuarios = super.getSess().createQuery("from UsuarioMapeamento").list();
         super.executar();
         return listaDeUsuarios;
     }
-      public void excluir(UsuarioMapeamento usuario) {
+
+    public void excluir(UsuarioMapeamento usuario) {
         super.inicializa();
         super.getSess().delete(usuario);
         super.executar();

@@ -1,47 +1,67 @@
+package br.edu.ifms.controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import java.io.IOException;
-import javax.faces.application.FacesMessage;
+import br.edu.ifms.mapeamento.UsuarioMapeamento;
+import br.edu.ifms.model.UsuarioModel;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-@ManagedBean
-@RequestScoped
-public class LoginBean {
 
+@ManagedBean
+@SessionScoped
+public class LoginBean implements Serializable {
+
+    private UsuarioMapeamento usuario;
+    private UsuarioModel usuarioModel;
     private String username;
     private String password;
 
-    public void login() {
-
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (this.username.equals("admin") && this.password.equals("admin")) {
-            context.getExternalContext().getSessionMap().put("user", username);
-            try {
-                context.getExternalContext().redirect("/Projeto/faces/view/principal.xhtml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            //Send an error message on Login Failure 
-            context.addMessage(null, new FacesMessage("Authentication Failed. Check username or password."));
-
-        }
+    public LoginBean() {
+        usuario = new UsuarioMapeamento();
+        usuarioModel = new UsuarioModel();
     }
 
-    public void logout() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().invalidateSession();
-        try {
-            context.getExternalContext().redirect("home.xhtml");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public String login() {
+        usuario = usuarioModel.buscarPorLogin(username);
+        if (usuario != null) {
+            if (usuario.getSenha().equals(password)) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentUser", usuario.getLogin());
+
+                return "/view/principal.xhtml?faces-redirect=true";
+            } else {
+                //context.addMessage(null, new FacesMessage("A senha está incorreta"));
+            }
+        } else {
+            //context.addMessage(null, new FacesMessage("O login informado não foi encontrado"));
         }
+        return "/login.xhtml?faces-redirect=true";
+    }
+
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentUser");
+        return "/areas.xhtml?faces-redirect=true";
+    }
+
+    public UsuarioMapeamento getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioMapeamento usuario) {
+        this.usuario = usuario;
+    }
+
+    public UsuarioModel getUsuarioModel() {
+        return usuarioModel;
+    }
+
+    public void setUsuarioModel(UsuarioModel usuarioModel) {
+        this.usuarioModel = usuarioModel;
     }
 
     public String getUsername() {

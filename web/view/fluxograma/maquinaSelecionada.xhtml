@@ -45,10 +45,9 @@ and open the template in the editor.
                     <label for="fabricanteId">Fabricante</label>
                     <h:inputText class="form-control" readonly="true" value="${fluxogramaBean.maquinaMapeamento.fabricante.nome}" />
                 </div>
-                <div class="form-group col-md-8 col-sm-12">
-                    <label for="lblImg">Imagem:</label>                
-                    <h:graphicImage value="#{fluxogramaBean.maquinaMapeamento.caminhoImagem}"/>
-                </div>
+            </div>
+            <div class="form-group col-md-12 col-sm-12">            
+                <h:graphicImage width="500" height="500" library="imagens" name="#{fluxogramaBean.maquinaMapeamento.caminhoImagem}"/>
             </div>
         </form>
 

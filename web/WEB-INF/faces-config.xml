@@ -3,18 +3,30 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-    <navigation-rule>
+    <!--navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>cadastrarMaquina</from-outcome>
             <to-view-id>/view/maquina/cadastrarMaquina.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule-->
+    
     <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>loginPage</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <lifecycle>
+        <phase-listener>br.edu.ifms.util.AuthorizationListener</phase-listener>
+    </lifecycle>
+    <!--navigation-rule>
         <from-view-id>/view/principal.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>cadastrarTipoMaquina</from-outcome>
             <to-view-id>/view/tipoMaquina/cadastrarTipoMaquina.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule-->
 </faces-config>
