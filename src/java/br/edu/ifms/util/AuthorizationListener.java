@@ -28,7 +28,7 @@ public class AuthorizationListener implements PhaseListener {
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         Object currentUser = session.getAttribute("currentUser");
 
-        if (currentPage.contains("index.xhtml") || currentPage.contains("areas.xhtml") || currentPage.contains("fluxograma") || currentPage.contains("maquinaSelecionada") | currentPage.contains("login")) {
+        if (currentPage.contains("index.xhtml") || currentPage.contains("areas.xhtml") ||currentPage.contains("EmManutencao.xhtml") || currentPage.contains("CadastrarUsuario.xhtml") || currentPage.contains("home.xhtml") || currentPage.contains("fluxograma") || currentPage.contains("maquinaSelecionada") | currentPage.contains("login")) {
 
         }else if (/*!isLoginPage && */currentUser == null) {
             NavigationHandler nh = facesContext.getApplication().getNavigationHandler();

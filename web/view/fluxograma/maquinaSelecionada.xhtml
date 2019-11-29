@@ -7,7 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/template.xhtml">
+                template="/view/home.xhtml">
 
     <ui:define name="menu">
 
@@ -36,6 +36,18 @@ and open the template in the editor.
                 <div class="form-group col-md-8 col-sm-12">
                     <label for="lblNome">Nome:</label>                
                     <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.descricao}"/>
+                </div>
+                <div class="form-group col-md-8 col-sm-12">
+                    <label for="lblPeso">Peso Kg:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.peso}"/>
+                </div>
+                <div class="form-group col-md-8 col-sm-12">
+                    <label for="lblAltura">Altura m:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.altura}"/>
+                </div>
+                <div class="form-group col-md-8 col-sm-12">
+                    <label for="lblLargura">Largura m:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.largura}"/>
                 </div>
                 <div class="form-group col-md-4 col-sm-12" onload="#{tipoBean.buscarTodos()}">
                     <label for="tipoId">Tipo</label>

@@ -5,9 +5,12 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/template.xhtml">
+                template="/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="cabecalho">
         <header>
@@ -30,14 +33,14 @@ and open the template in the editor.
         <style type="text/css">
             h2 {
                 color: black;
-                font-family:initial;
+                font-family:Trebuchet MS;
                 text-align: justify;
                 font-size: 150%;
             }
             h1 {
                 color: black;
-                font-family:initial;
-                text-align: justify;
+                font-family:Trebuchet MS;
+                text-align: center;
                 font-size: 180%;
             }
             .cont {
@@ -57,10 +60,11 @@ and open the template in the editor.
             <h1>Acesso Restrito de Informações </h1>
             <h:form>
                 <h:outputText value="Login: "/>
-                <h:inputText label="Login" value="#{loginBean.username}" /><br/><br/>
+                <h:inputText class="openMyModal" label="Login" value="#{loginBean.username}" /><br/><br/>
                 <h:outputText value="Senha: "/>
                 <h:inputSecret value="#{loginBean.password}" /><br/><br/>
                 <h:commandButton class="btn btn-info" value="login" action="#{loginBean.login()}" />
+                <h:messages class="msg"  />
             </h:form>
             <h:form>
                 <br><br></br></br>

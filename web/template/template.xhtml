@@ -23,6 +23,7 @@ and open the template in the editor.
         <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"/>
         <style type="text/css">
             .nav{
+                font-family: Trebuchet MS;
                 margin-bottom: 0%;
                 height:100%; 
                 width:100%;
@@ -32,7 +33,7 @@ and open the template in the editor.
                 margin-bottom: 0%;
                 height:100%; 
                 width:100%;
-                font-family:initial;
+                font-family:Trebuchet MS;
                 text-align: justify;
                 margin-left: auto;
                 margin-top: 10px;
@@ -47,7 +48,7 @@ and open the template in the editor.
                 margin-right: auto;
                 text-align: center;
                 padding: 10px;
-                font-family: fantasy;
+                font-family: Trebuchet MS;
                 font-size: 100%;
                 height:100%;
                 width:100%;
@@ -80,72 +81,12 @@ and open the template in the editor.
                                     <li class="nav-item">
                                         <a class="nav-link active" href="/Projeto/faces/view/areas.xhtml">Áreas</a>
                                     </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Máquina
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/maquina/cadastrarMaquina.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Funcionário
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/funcionario/cadastrarFuncionario.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manutenção
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/manutencao/cadastrarManutencao.xhtml">Manter</a></li>
-                                            <li><a href="/Projeto/faces/view/manutencao/finalizadas.xhtml">Finalizadas</a></li>
-                                        </ul>
-                                    </li>   
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Peça
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/peca/cadastrarPeca.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Subconjunto
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/subconjunto/cadastrarSubconjunto.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tipo
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/tipoMaquina/cadastrarTipoMaquina.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Prioridade
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/prioridade/cadastrarPrioridade.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Fabricante
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/fabricante/cadastrarFabricante.xhtml">Manter</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Função
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/Projeto/faces/view/funcaoFuncionario/cadastrarFuncao.xhtml">Manter</a></li>
-                                        </ul>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="/Projeto/faces/view/EmManutencao.xhtml">Máquinas em manutenção</a>
                                     </li>
                                     <li class="navbar-right">
-                                        <a class="glyphicon glyphicon-log-in" href="/Projeto/faces/login.xhtml">&#160;Login</a>
+                                        <a class="glyphicon glyphicon-log-in" href="/Projeto/faces/view/home.xhtml">&#160;Logout</a>
                                     </li>
                                 </ul>
                             </header>
@@ -179,153 +120,132 @@ and open the template in the editor.
                                     </table>
                                 </div>
                             </div>
-                            <!-- #################### Funcionario -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFuncionario"><span class="glyphicon glyphicon-lock">
-                                            </span>Funcionário</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapseFuncionario">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/funcionario/cadastrarFuncionario" value="manter"/>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                        </div>
+                        <!-- #################### Funcionario -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFuncionario"><span class="glyphicon glyphicon-lock">
+                                        </span>Funcionário</a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapseFuncionario">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/funcionario/cadastrarFuncionario" value="manter"/>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- #################### Manutenção -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseManutencao"><span class="glyphicon glyphicon-lock">
-                                            </span>Manutenção</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapseManutencao">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/cadastrarManutencao" value="Em aberto / Nova"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/finalizadas" value="Finalizadas"/>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                        <!-- #################### Manutenção -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseManutencao"><span class="glyphicon glyphicon-lock">
+                                        </span>Manutenção</a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapseManutencao">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/cadastrarManutencao" value="Em aberto / Nova"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/manutencao/finalizadas" value="Finalizadas"/>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
-                            <!-- #################### Peça Máquina -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsePeca"><span class="glyphicon glyphicon-lock">
-                                            </span>Peça</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapsePeca">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/peca/cadastrarPeca" value="Manter"/>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                        </div>
+                        <!-- #################### Peça Máquina -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsePeca"><span class="glyphicon glyphicon-lock">
+                                        </span>Peça</a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapsePeca">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/peca/cadastrarPeca" value="Manter"/>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
-                            <!-- #################### Subconjunto -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubconjunto"><span class="glyphicon glyphicon-lock">
-                                            </span>Subconjunto</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapseSubconjunto">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/subconjunto/cadastrarSubconjunto" value="Manter"/>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                        </div>
+                        <!-- #################### Subconjunto -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSubconjunto"><span class="glyphicon glyphicon-lock">
+                                        </span>Subconjunto</a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapseSubconjunto">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary" ></span><h:link outcome="/view/subconjunto/cadastrarSubconjunto" value="Manter"/>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
-                            <!-- #################### Prioridade -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsePrioridade"><span class="glyphicon glyphicon-lock">
-                                            </span>Prioridade</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapsePrioridade">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/prioridade/cadastrarPrioridade" value=" Manter"/>
-                                                </td>
-                                            </tr>
+                        </div>
+                        <!-- #################### Prioridade -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsePrioridade"><span class="glyphicon glyphicon-lock">
+                                        </span>Prioridade</a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapsePrioridade">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/prioridade/cadastrarPrioridade" value=" Manter"/>
+                                            </td>
+                                        </tr>
 
-                                        </table> 
-                                    </div>
+                                    </table> 
                                 </div>
                             </div>
-                            <!-- #################### Tipo de Máquina -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTipoMaquina"><span class="glyphicon glyphicon-lock">
-                                            </span>Tipo de Máquina</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapseTipoMaquina">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/tipoMaquina/cadastrarTipoMaquina" value=" Manter"/>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-                                    </div>
-                                </div>
+                        </div>
+                        <!-- #################### Tipo de Máquina -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTipoMaquina"><span class="glyphicon glyphicon-lock">
+                                        </span>Tipo de Máquina</a>
+                                </h4>
                             </div>
-                            <!-- #################### Fabricante -->                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFabricante"><span class="glyphicon glyphicon-lock">
-                                            </span>Fabricante</a>
-                                    </h4>
-                                </div>
-                                <div class="panel-collapse collapse" id="collapseFabricante">
-                                    <div class="panel-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/fabricante/cadastrarFabricante" value=" Manter"/>
-                                                </td>
-                                            </tr>
+                            <div class="panel-collapse collapse" id="collapseTipoMaquina">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/tipoMaquina/cadastrarTipoMaquina" value=" Manter"/>
+                                            </td>
+                                        </tr>
 
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -343,6 +263,27 @@ and open the template in the editor.
                                         <tr>
                                             <td>
                                                 <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/funcaoFuncionario/cadastrarFuncao" value=" Manter"/>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- #################### Fabricante -->                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFabricante"><span class="glyphicon glyphicon-lock">
+                                        </span>Fabricante</a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapseFabricante">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="glyphicon glyphicon-pencil text-primary"></span><h:link outcome="/view/fabricante/cadastrarFabricante" value=" Manter"/>
                                             </td>
                                         </tr>
 

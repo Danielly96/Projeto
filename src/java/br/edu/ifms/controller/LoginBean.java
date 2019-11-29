@@ -5,10 +5,10 @@ package br.edu.ifms.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import br.edu.ifms.mapeamento.UsuarioMapeamento;
 import br.edu.ifms.model.UsuarioModel;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -22,9 +22,23 @@ public class LoginBean implements Serializable {
     private String username;
     private String password;
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+    private String msg;
+
     public LoginBean() {
         usuario = new UsuarioMapeamento();
         usuarioModel = new UsuarioModel();
+        this.msg = "";
+    }
+
+    public void inicializa() {
+        this.msg = "";
     }
 
     public String login() {
@@ -32,9 +46,14 @@ public class LoginBean implements Serializable {
         if (usuario != null) {
             if (usuario.getSenha().equals(password)) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentUser", usuario.getLogin());
-
                 return "/view/principal.xhtml?faces-redirect=true";
             } else {
+                FacesContext.getCurrentInstance().addMessage(
+                        null, new FacesMessage("A senha esta incorreta"));
+
+                FacesContext.getCurrentInstance()
+                        .getExternalContext()
+                        .getFlash().setKeepMessages(true);
                 //context.addMessage(null, new FacesMessage("A senha está incorreta"));
             }
         } else {
@@ -45,7 +64,7 @@ public class LoginBean implements Serializable {
 
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentUser");
-        return "/areas.xhtml?faces-redirect=true";
+        return "/home.xhtml?faces-redirect=true";
     }
 
     public UsuarioMapeamento getUsuario() {

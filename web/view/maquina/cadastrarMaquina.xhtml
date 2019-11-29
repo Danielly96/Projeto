@@ -31,6 +31,9 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Descrição</th>
+                        <th scope="col">Peso Kg</th>
+                        <th scope="col">Largura m</th>
+                        <th scope="col">Altura m</th>
                         <th scope="col">Tipo </th>
                         <th scope="col">Fabricante </th>
                         <th scope="col">#</th>
@@ -42,9 +45,12 @@
                         <tr>
                             <td>#{maquinas.id}</td>
                             <td>#{maquinas.descricao}</td>
+                            <td>#{maquinas.peso}</td>
+                            <td>#{maquinas.largura}</td>
+                            <td>#{maquinas.altura}</td>
                             <td>#{maquinas.tipo.descricao}</td>
                             <td>#{maquinas.fabricante.nome}</td>
-                        
+
                             <td>
                                 <h:form>
                                     <h:commandButton class="btn btn-danger" value="Excluir" onclick="return confirm('Deseja realmente excluir o registro?')" action= "#{maquinaBean.excluir(maquinas.id)}"/>

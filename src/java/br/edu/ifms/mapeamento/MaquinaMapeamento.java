@@ -26,6 +26,9 @@ public class MaquinaMapeamento implements Serializable {
     @Id
     @GeneratedValue
     private long id;
+    private float peso;
+    private float largura;
+    private float altura;
     private String descricao;
     private String caminhoImagem;
 
@@ -39,6 +42,30 @@ public class MaquinaMapeamento implements Serializable {
     @Fetch(FetchMode.JOIN)
     private TipoMapeamento tipo;
 
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
+
+    public float getLargura() {
+        return largura;
+    }
+
+    public void setLargura(float largura) {
+        this.largura = largura;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(float altura) {
+        this.altura = altura;
+    }
+  
     public String getCaminhoImagem() {
         return caminhoImagem;
     }
