@@ -38,6 +38,14 @@ public class SubconjuntoModel extends Conexao {
         return listaDeSubconjuntos;
     }
 
+    public List<SubconjuntoMapeamento> buscarTodosDaMaquina(Long idMaquina) {
+        List<SubconjuntoMapeamento> listaDeSubconjuntos = new ArrayList<>();
+        super.inicializa();
+        listaDeSubconjuntos = super.getSess().createQuery("from SubconjuntoMapeamento where idMaquina =" + idMaquina).list();
+        super.executar();
+        return listaDeSubconjuntos;
+    }
+    
     public void excluir(SubconjuntoMapeamento subconjunto) {
         super.inicializa();
         super.getSess().delete(subconjunto);

@@ -5,11 +5,11 @@
         <Node id="view/home.xhtml" x="150" y="300" zoom="true"/>
         <Node id="view/principal.xhtml" x="150" y="150" zoom="true"/>
         <Node id="index.xhtml" x="20" y="41" zoom="true"/>
-        <Node id="view/manutencao/cadastrarManutencao.xhtml" x="150" y="750" zoom="true"/>
         <Node id="view/fluxograma/Fluxograma3.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="view/manutencao/cadastrarManutencao.xhtml" x="150" y="750" zoom="true"/>
         <Node id="view/maquina/cadastrarMaquina.xhtml" x="270" y="48" zoom="true"/>
-        <Node id="view/prioridade/cadastrarPrioridade.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="template/template.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="view/prioridade/cadastrarPrioridade.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="view/fabricante/cadastrarFabricante.xhtml" x="150" y="450" zoom="true"/>
         <Node id="view/funcionario/cadastrarFuncionario.xhtml" x="400" y="600" zoom="true"/>
         <Node id="view/areas.xhtml" x="650" y="450" zoom="true"/>

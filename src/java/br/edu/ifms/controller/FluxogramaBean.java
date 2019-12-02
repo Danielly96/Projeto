@@ -9,10 +9,12 @@ import br.edu.ifms.mapeamento.FuncionarioMapeamento;
 import br.edu.ifms.mapeamento.ManutencaoMapeamento;
 import br.edu.ifms.mapeamento.MaquinaMapeamento;
 import br.edu.ifms.mapeamento.PrioridadeMapeamento;
+import br.edu.ifms.mapeamento.SubconjuntoMapeamento;
 import br.edu.ifms.model.FuncionarioModel;
 import br.edu.ifms.model.ManutencaoModel;
 import br.edu.ifms.model.MaquinaModel;
 import br.edu.ifms.model.PrioridadeModel;
+import br.edu.ifms.model.SubconjuntoModel;
 import br.edu.ifms.util.RetornoAcao;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class FluxogramaBean implements Serializable {
     private ManutencaoModel manutencaomodel;
     private MaquinaMapeamento maquinaMapeamento;
     private MaquinaModel maquinaModel;
+    private SubconjuntoModel subconjuntoModel;
     private PrioridadeMapeamento prioridademape;
     private PrioridadeModel prioridademodel;
     private FuncionarioMapeamento fmape;
@@ -42,11 +45,11 @@ public class FluxogramaBean implements Serializable {
     private String msg;
     private RetornoAcao retornoAcao;
     private List<ManutencaoMapeamento> listaDeManutencoes;
+    private List<SubconjuntoMapeamento> listaDeSubconjuntos;
 
     public FluxogramaBean() {
         this.manutencaomape = new ManutencaoMapeamento();
         this.manutencaomodel = new ManutencaoModel();
-        this.listaDeManutencoes = new ArrayList<>();
         this.maquinaMapeamento = new MaquinaMapeamento();
         this.maquinaModel = new MaquinaModel();
         this.prioridademape = new PrioridadeMapeamento();
@@ -56,6 +59,8 @@ public class FluxogramaBean implements Serializable {
         this.msg = "";
         this.retornoAcao = new RetornoAcao();
         this.listaDeManutencoes = new ArrayList<>();
+        this.listaDeSubconjuntos = new ArrayList<>();
+        this.subconjuntoModel = new SubconjuntoModel();
     }
 
     public void inicializa() {
@@ -106,6 +111,10 @@ public class FluxogramaBean implements Serializable {
         this.listaDeManutencoes = manutencaomodel.buscarTodosEmManutencao();
         
        // manutencaomape.setEmManutencao(true);
+    }
+    
+    public void buscarTodosSubconjuntos(Long idMaquina) {
+        this.listaDeSubconjuntos = subconjuntoModel.buscarTodosDaMaquina(idMaquina);
     }
 
     public String chamadaDoFluxograma(Long id){
@@ -236,5 +245,21 @@ public class FluxogramaBean implements Serializable {
 
     public void setFmodel(FuncionarioModel fmodel) {
         this.fmodel = fmodel;
+    }
+
+    public SubconjuntoModel getSubconjuntoModel() {
+        return subconjuntoModel;
+    }
+
+    public void setSubconjuntoModel(SubconjuntoModel subconjuntoModel) {
+        this.subconjuntoModel = subconjuntoModel;
+    }
+
+    public List<SubconjuntoMapeamento> getListaDeSubconjuntos() {
+        return listaDeSubconjuntos;
+    }
+
+    public void setListaDeSubconjuntos(List<SubconjuntoMapeamento> listaDeSubconjuntos) {
+        this.listaDeSubconjuntos = listaDeSubconjuntos;
     }
 }

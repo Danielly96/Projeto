@@ -22,6 +22,11 @@ and open the template in the editor.
                 color: blue;
             }
         </style>
+        <script>
+            function setaDadosModal(valor) {
+                document.getElementById('paDescricaoProblema').innerHTML = valor;
+            }
+        </script>
         <h1>Manutenção</h1>
         <hr/>
         <div class="field">
@@ -42,11 +47,10 @@ and open the template in the editor.
                             <td>#{manutencoes.prioridade.descricao}</td>
                             <td><h:outputText value="#{manutencoes.dataQueIdentificou}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </h:outputText></td>
                             <td>
-                                <!--a class="openMyModal product-title" data-id='{"nome": "@Model.Mensagens[i].Cliente.Nome", "pessoaId": @Model.Mensagens[i].Cliente.PessoaId, "mensagemId": @Model.Mensagens[i].MensagemId, "conteudo": "@Model.Mensagens[i].Conteudo"}' data-toggle="modal" href="#myModal"></a-->
-                                <button class="openMyModal btn btn-primary" data-id='{"problema": "#{manutencoes.descricaoDoProblema}"}' data-toggle="modal" data-target="#modal-descricaoProblema" id="btn-descricaoProblema">Descrição</button>
-                                <!--button type="submit" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Descrição</button-->
+                                <a data-toggle="modal" data-target="#modal-descricaoProblema" class="btn btn-primary" onclick="setaDadosModal('#{manutencoes.descricaoDoProblema}')">
+                                    <span class="btn-label"><i class="fa fa-check"></i></span>Descrição
+                                </a>
                             </td>
-
                         </tr>
                     </ui:repeat>
                 </tbody>

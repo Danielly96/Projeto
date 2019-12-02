@@ -37,25 +37,36 @@ and open the template in the editor.
                     <label for="lblNome">Nome:</label>                
                     <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.descricao}"/>
                 </div>
-                <div class="form-group col-md-8 col-sm-12">
-                    <label for="lblPeso">Peso Kg:</label>                
-                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.peso}"/>
-                </div>
-                <div class="form-group col-md-8 col-sm-12">
-                    <label for="lblAltura">Altura m:</label>                
-                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.altura}"/>
-                </div>
-                <div class="form-group col-md-8 col-sm-12">
-                    <label for="lblLargura">Largura m:</label>                
-                    <h:inputText class="form-control" readonly="true" id="lblNome" value="#{fluxogramaBean.maquinaMapeamento.largura}"/>
-                </div>
                 <div class="form-group col-md-4 col-sm-12" onload="#{tipoBean.buscarTodos()}">
                     <label for="tipoId">Tipo</label>
                     <h:inputText class="form-control" readonly="true" value="${fluxogramaBean.maquinaMapeamento.tipo.descricao}" />
                 </div>
-                <div class="form-group col-md-4 col-sm-12" onload="#{fabricanteBean.buscarTodos()}">
+                <div class="form-group col-md-6 col-sm-12" onload="#{fabricanteBean.buscarTodos()}">
                     <label for="fabricanteId">Fabricante</label>
                     <h:inputText class="form-control" readonly="true" value="${fluxogramaBean.maquinaMapeamento.fabricante.nome}" />
+                </div>
+                <div class="form-group col-md-2 col-sm-12">
+                    <label for="lblPeso">Peso Kg:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblPeso" value="#{fluxogramaBean.maquinaMapeamento.peso}"/>
+                </div>
+                <div class="form-group col-md-2 col-sm-12">
+                    <label for="lblAltura">Altura m:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblAltura" value="#{fluxogramaBean.maquinaMapeamento.altura}"/>
+                </div>
+                <div class="form-group col-md-2 col-sm-12">
+                    <label for="lblLargura">Largura m:</label>                
+                    <h:inputText class="form-control" readonly="true" id="lblLargura" value="#{fluxogramaBean.maquinaMapeamento.largura}"/>
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12" onload="#{fluxogramaBean.buscarTodosSubconjuntos(fluxogramaBean.maquinaMapeamento.id)}">
+                    <h5>SubConjuntos</h5>
+                    <ui:repeat value="#{fluxogramaBean.listaDeSubconjuntos}" var="subCOnjuntos">
+                        #{subCOnjuntos.descricao}:
+                        <ui:repeat value="#{subCOnjuntos.peca}" var="peca">
+                            #{peca.descricao}
+                        </ui:repeat>
+                        <br/>
+                    </ui:repeat>
                 </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">            
